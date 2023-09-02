@@ -20,6 +20,17 @@ const LogIn = (): JSX.Element => {
             <hr className="passwordHr" />
           </label>
         </div>
+
+        {/* here are log in button and if do not have account sing up link tag */}
+
+        <div className="buttonCont">
+          <button>Login to your accoun</button>
+
+          <div className="textCont">
+            <p>Don’t have an account</p>
+            <Link to="/logIn">Sign Up</Link>
+          </div>
+        </div>
       </div>
     </LogInCont>
   );
@@ -88,6 +99,46 @@ const LogInCont = styled.div`
           height: 1px;
           width: 100%;
         }
+      }
+    }
+
+    .buttonCont {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 24px;
+
+      button {
+        width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 6px;
+        background: var(--Red, #fc4747);
+        font-size: 15px;
+        font-weight: 300;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    .textCont {
+      font-size: 15px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      p {
+        color: white;
+      }
+
+      a {
+        color: red;
+        text-decoration: none;
       }
     }
   }
