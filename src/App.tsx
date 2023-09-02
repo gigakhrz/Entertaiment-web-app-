@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SignUp from "./components/LogIn-SignUp/SingUp";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <Main>
           <Routes>
             <Route path="/" />
+            <Route path="/SignUp" element={<SignUp />} />
           </Routes>
         </Main>
       </AppContainer>
