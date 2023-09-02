@@ -3,9 +3,14 @@ import logo from "../../../public/images/logo.svg";
 import { Link } from "react-router-dom";
 
 const LogIn = (): JSX.Element => {
+  const handleGoToHomePage = (): void => {
+    // უნდა შეიცვალოს როცა გალაივდება საიტი
+    window.location.href = "http://localhost:5173/";
+  };
+
   return (
     <LogInCont>
-      <img src={logo} alt="logo img" />
+      <img onClick={handleGoToHomePage} src={logo} alt="logo img" />
       <div className="logIn">
         <h1>Log In</h1>
 
