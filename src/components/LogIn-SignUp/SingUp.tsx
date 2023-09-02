@@ -95,6 +95,7 @@ const SingUpCont = styled.div`
           font-size: 15px;
           font-weight: 300;
           color: white;
+          cursor: pointer;
 
           :focus {
             outline: none;
@@ -142,6 +143,7 @@ const SingUpCont = styled.div`
         font-size: 15px;
         font-weight: 300;
         color: white;
+        cursor: pointer;
       }
     }
 
