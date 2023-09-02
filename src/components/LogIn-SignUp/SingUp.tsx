@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import logo from "../../../public/images/logo.svg";
+import { Link } from "react-router-dom";
 
 const SignUp = (): JSX.Element => {
   return (
@@ -28,6 +29,17 @@ const SignUp = (): JSX.Element => {
             />
             <hr />
           </label>
+        </div>
+
+        {/* here are create acount button and if already have account login link tag */}
+
+        <div className="buttonCont">
+          <button>Create an account</button>
+
+          <div className="textCont">
+            <p>Already have an account?</p>
+            <Link to="logIn">LogIn</Link>
+          </div>
         </div>
       </div>
     </SingUpCont>
@@ -96,6 +108,45 @@ const SingUpCont = styled.div`
           height: 1px;
           width: 100%;
         }
+      }
+    }
+
+    .buttonCont {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 24px;
+
+      button {
+        width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 6px;
+        background: var(--Red, #fc4747);
+        font-size: 15px;
+        font-weight: 300;
+        color: white;
+      }
+    }
+
+    .textCont {
+      font-size: 15px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      p {
+        color: white;
+      }
+
+      a {
+        color: red;
+        text-decoration: none;
       }
     }
   }
