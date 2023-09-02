@@ -28,7 +28,7 @@ const LogIn = (): JSX.Element => {
 
           <div className="textCont">
             <p>Don’t have an account</p>
-            <Link to="/logIn">Sign Up</Link>
+            <Link to="/signUp">Sign Up</Link>
           </div>
         </div>
       </div>
@@ -98,6 +98,14 @@ const LogInCont = styled.div`
           outline: none;
           height: 1px;
           width: 100%;
+        }
+
+        .email:focus + .emailHr {
+          background: white;
+        }
+
+        .password:focus + .passwordHr {
+          background: white;
         }
       }
     }
