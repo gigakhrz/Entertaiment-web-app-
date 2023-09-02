@@ -13,12 +13,12 @@ const SignUp = (): JSX.Element => {
         <div className="inputs">
           <label>
             <input className="email" type="text" placeholder="Email address" />
-            <hr />
+            <hr className="emailHr" />
           </label>
 
           <label>
             <input className="password" type="text" placeholder="Password" />
-            <hr />
+            <hr className="passwordHr" />
           </label>
 
           <label>
@@ -27,7 +27,7 @@ const SignUp = (): JSX.Element => {
               type="text"
               placeholder="Repeat Password"
             />
-            <hr />
+            <hr className="passwordRepeatHr" />
           </label>
         </div>
 
@@ -107,6 +107,18 @@ const SingUpCont = styled.div`
           outline: none;
           height: 1px;
           width: 100%;
+        }
+
+        .email:focus + .emailHr {
+          background: white;
+        }
+
+        .password:focus + .passwordHr {
+          background: white;
+        }
+
+        .repeat-password:focus + .passwordRepeatHr {
+          background: white;
         }
       }
     }
