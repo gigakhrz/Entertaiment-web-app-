@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./components/LogIn-SignUp/SingUp";
+import LogIn from "./components/LogIn-SignUp/LogIn";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
         <Main>
           <Routes>
             <Route path="/" />
-            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/logIn" element={<LogIn />} />
           </Routes>
         </Main>
       </AppContainer>
