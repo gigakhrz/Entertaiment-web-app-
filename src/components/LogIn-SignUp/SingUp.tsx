@@ -38,7 +38,7 @@ const SignUp = (): JSX.Element => {
 
           <div className="textCont">
             <p>Already have an account?</p>
-            <Link to="logIn">LogIn</Link>
+            <Link to="/logIn">LogIn</Link>
           </div>
         </div>
       </div>
