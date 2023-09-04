@@ -11,14 +11,13 @@ const schema = yup.object().shape({
     .min(6, "At least 6 characters")
     .max(20, "Maximum 20 characters")
     .required("Can't be empty")
-    .matches(
-      /^(?=.*[A-Z])(?=.*\W)/,
-      "Password must contain at least one uppercase letter and one symbol"
-    ),
+    .matches(/^(?=.*[A-Z])(?=.*\W)/, "Must contain !A@"),
   confirmPassword: yup
     .string()
     .required("Can't be empty")
-    .oneOf([yup.ref("password"), ""]),
+    .test("passwords-match", "Passwords must match", function (value) {
+      return value === this.parent.password;
+    }),
 });
 
 export default schema;

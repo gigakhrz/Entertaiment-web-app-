@@ -25,11 +25,15 @@ const SignUp = (): JSX.Element => {
     resolver: yupResolver(schema),
   });
 
+  const onSubmit = (data: SignUpTypes) => {
+    console.log(data);
+  };
+
   return (
     <SingUpCont>
       <img onClick={handleGoToHomePage} src={logo} alt="logo img" />
 
-      <form className="signUp">
+      <form className="signUp" onSubmit={handleSubmit(onSubmit)}>
         <h1>Sign Up</h1>
 
         <div className="inputs">
@@ -41,33 +45,36 @@ const SignUp = (): JSX.Element => {
               placeholder="Email address"
             />
             <hr className="emailHr" />
+            <p>{errors.email?.message}</p>
           </label>
 
           <label>
             <input
               {...register("password")}
               className="password"
-              type="text"
+              type="password"
               placeholder="Password"
             />
             <hr className="passwordHr" />
+            <p>{errors.password?.message}</p>
           </label>
 
           <label>
             <input
               {...register("confirmPassword")}
               className="repeat-password"
-              type="text"
+              type="password"
               placeholder="Repeat Password"
             />
             <hr className="passwordRepeatHr" />
+            <p>{errors.confirmPassword?.message}</p>
           </label>
         </div>
 
         {/* here are create acount button and if already have account login link tag */}
 
         <div className="buttonCont">
-          <button>Create an account</button>
+          <button type="submit">Create an account</button>
 
           <div className="textCont">
             <p>Already have an account?</p>
@@ -117,6 +124,20 @@ const SingUpCont = styled.div`
 
       label {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        position: relative;
+
+        p {
+          color: #fc4747;
+          font-size: 13px;
+          font-weight: 300;
+          position: absolute;
+          top: 15%;
+          left: 65%;
+        }
 
         input {
           min-width: 100%;
