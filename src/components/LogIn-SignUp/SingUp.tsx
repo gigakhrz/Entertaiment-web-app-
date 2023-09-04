@@ -44,7 +44,10 @@ const SignUp = (): JSX.Element => {
               type="text"
               placeholder="Email address"
             />
-            <hr className="emailHr" />
+            <hr
+              className="emailHr"
+              style={{ background: errors.email ? "red" : "" }}
+            />
             <p>{errors.email?.message}</p>
           </label>
 
@@ -55,7 +58,10 @@ const SignUp = (): JSX.Element => {
               type="password"
               placeholder="Password"
             />
-            <hr className="passwordHr" />
+            <hr
+              className="passwordHr"
+              style={{ background: errors.password ? "red" : "" }}
+            />
             <p>{errors.password?.message}</p>
           </label>
 
@@ -66,7 +72,10 @@ const SignUp = (): JSX.Element => {
               type="password"
               placeholder="Repeat Password"
             />
-            <hr className="passwordRepeatHr" />
+            <hr
+              className="passwordRepeatHr"
+              style={{ background: errors.confirmPassword ? "red" : "" }}
+            />
             <p>{errors.confirmPassword?.message}</p>
           </label>
         </div>
