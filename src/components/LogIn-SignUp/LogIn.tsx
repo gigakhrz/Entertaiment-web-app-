@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import logo from "../../../public/images/logo.svg";
 import { Link } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import schema from "./schema";
+
+interface LogInTypes {
+  email: string;
+  password: string;
+}
 
 const LogIn = (): JSX.Element => {
   const handleGoToHomePage = (): void => {
@@ -8,35 +16,59 @@ const LogIn = (): JSX.Element => {
     window.location.href = "http://localhost:5173/";
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LogInTypes>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data: LogInTypes) => {
+    console.log(data);
+  };
+
   return (
     <LogInCont>
       <img onClick={handleGoToHomePage} src={logo} alt="logo img" />
-      <div className="logIn">
+      <form className="logIn" onSubmit={handleSubmit(onSubmit)}>
         <h1>Log In</h1>
 
         <div className="inputs">
           <label>
-            <input className="email" type="text" placeholder="Email address" />
+            <input
+              className="email"
+              type="text"
+              {...register("email")}
+              placeholder="Email address"
+            />
             <hr className="emailHr" />
+            <p>{errors.email?.message}</p>
           </label>
 
           <label>
-            <input className="password" type="text" placeholder="Password" />
+            <input
+              className="password"
+              type="password"
+              {...register("password")}
+              placeholder="Password"
+            />
             <hr className="passwordHr" />
+            <p>{errors.password?.message}</p>
           </label>
         </div>
 
         {/* here are log in button and if do not have account sing up link tag */}
 
         <div className="buttonCont">
-          <button>Login to your accoun</button>
+          <button type="submit">Login to your accoun</button>
 
           <div className="textCont">
             <p>Don’t have an account</p>
             <Link to="/signUp">Sign Up</Link>
           </div>
         </div>
-      </div>
+      </form>
     </LogInCont>
   );
 };
@@ -79,6 +111,20 @@ const LogInCont = styled.div`
 
       label {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        position: relative;
+
+        p {
+          color: #fc4747;
+          font-size: 13px;
+          font-weight: 300;
+          position: absolute;
+          top: 15%;
+          left: 65%;
+        }
 
         input {
           min-width: 100%;
