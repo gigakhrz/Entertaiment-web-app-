@@ -1,3 +1,4 @@
+//for login component
 import * as yup from "yup";
 
 const schema = yup.object().shape({
