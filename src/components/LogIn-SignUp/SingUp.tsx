@@ -1,32 +1,61 @@
 import styled from "styled-components";
 import logo from "../../../public/images/logo.svg";
 import { Link } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import schema from "./signUpSchema";
+
+interface SignUpTypes {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const SignUp = (): JSX.Element => {
   const handleGoToHomePage = (): void => {
     // უნდა შეიცვალოს როცა გალაივდება საიტი
     window.location.href = "http://localhost:5173/";
   };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpTypes>({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <SingUpCont>
       <img onClick={handleGoToHomePage} src={logo} alt="logo img" />
 
-      <div className="signUp">
+      <form className="signUp">
         <h1>Sign Up</h1>
 
         <div className="inputs">
           <label>
-            <input className="email" type="text" placeholder="Email address" />
+            <input
+              {...register("email")}
+              className="email"
+              type="text"
+              placeholder="Email address"
+            />
             <hr className="emailHr" />
           </label>
 
           <label>
-            <input className="password" type="text" placeholder="Password" />
+            <input
+              {...register("password")}
+              className="password"
+              type="text"
+              placeholder="Password"
+            />
             <hr className="passwordHr" />
           </label>
 
           <label>
             <input
+              {...register("confirmPassword")}
               className="repeat-password"
               type="text"
               placeholder="Repeat Password"
@@ -45,7 +74,7 @@ const SignUp = (): JSX.Element => {
             <Link to="/logIn">LogIn</Link>
           </div>
         </div>
-      </div>
+      </form>
     </SingUpCont>
   );
 };
