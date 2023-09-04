@@ -42,7 +42,10 @@ const LogIn = (): JSX.Element => {
               {...register("email")}
               placeholder="Email address"
             />
-            <hr className="emailHr" />
+            <hr
+              className="emailHr"
+              style={{ background: errors.email ? "red" : "" }}
+            />
             <p>{errors.email?.message}</p>
           </label>
 
@@ -53,7 +56,10 @@ const LogIn = (): JSX.Element => {
               {...register("password")}
               placeholder="Password"
             />
-            <hr className="passwordHr" />
+            <hr
+              className="passwordHr"
+              style={{ background: errors.password ? "red" : "" }}
+            />
             <p>{errors.password?.message}</p>
           </label>
         </div>
@@ -61,7 +67,7 @@ const LogIn = (): JSX.Element => {
         {/* here are log in button and if do not have account sing up link tag */}
 
         <div className="buttonCont">
-          <button type="submit">Login to your accoun</button>
+          <button type="submit">Login to your account</button>
 
           <div className="textCont">
             <p>Don’t have an account</p>
