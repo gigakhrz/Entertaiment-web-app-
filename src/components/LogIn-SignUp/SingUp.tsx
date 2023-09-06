@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import logo from "../../../public/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "./signUpSchema";
+import axios from "axios";
 
 interface SignUpTypes {
   email: string;
@@ -12,6 +13,8 @@ interface SignUpTypes {
 }
 
 const SignUp = (): JSX.Element => {
+  const navigate = useNavigate();
+
   const handleGoToHomePage = (): void => {
     // უნდა შეიცვალოს როცა გალაივდება საიტი
     window.location.href = "http://localhost:5173/";
@@ -26,7 +29,21 @@ const SignUp = (): JSX.Element => {
   });
 
   const onSubmit = (data: SignUpTypes) => {
-    console.log(data);
+    const email = data.email;
+    const password = data.password;
+    const createUser = async (): Promise<void> => {
+      try {
+        await axios.post("http://localhost:3000/signUp", {
+          email: email,
+          password: password,
+        });
+        // navigate("logIn");
+        console.log("succesfuly");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    createUser();
   };
 
   return (
