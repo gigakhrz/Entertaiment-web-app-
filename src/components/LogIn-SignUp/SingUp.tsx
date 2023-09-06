@@ -37,8 +37,7 @@ const SignUp = (): JSX.Element => {
           email: email,
           password: password,
         });
-        // navigate("logIn");
-        console.log("succesfuly");
+        navigate("/logIn");
       } catch (error) {
         console.log(error);
       }
