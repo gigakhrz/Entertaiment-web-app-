@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "./signUpSchema";
 import axios from "axios";
+import { useState } from "react";
 
 interface SignUpTypes {
   email: string;
@@ -28,6 +29,8 @@ const SignUp = (): JSX.Element => {
     resolver: yupResolver(schema),
   });
 
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
   const onSubmit = (data: SignUpTypes) => {
     const email = data.email;
     const password = data.password;
@@ -39,14 +42,17 @@ const SignUp = (): JSX.Element => {
         });
         navigate("/logIn");
       } catch (error) {
-        console.log(error);
+        const err = error as any;
+        if (err.response && err.response.status === 400) {
+          setErrorMessage("Email is already in use");
+        } else console.log(error);
       }
     };
     createUser();
   };
 
   return (
-    <SingUpCont>
+    <SingUpCont errorMessage={errorMessage}>
       <img onClick={handleGoToHomePage} src={logo} alt="logo img" />
 
       <form className="signUp" onSubmit={handleSubmit(onSubmit)}>
@@ -65,6 +71,7 @@ const SignUp = (): JSX.Element => {
               style={{ background: errors.email ? "red" : "" }}
             />
             <p>{errors.email?.message}</p>
+            <p className="errorMesage">Email is already in use</p>
           </label>
 
           <label>
@@ -113,7 +120,7 @@ const SignUp = (): JSX.Element => {
 
 export default SignUp;
 
-const SingUpCont = styled.div`
+const SingUpCont = styled.div<{ errorMessage: string }>`
   margin-top: 48px;
   width: 100%;
   display: flex;
@@ -162,6 +169,11 @@ const SingUpCont = styled.div`
           position: absolute;
           top: 15%;
           left: 65%;
+        }
+
+        .errorMesage {
+          left: 0;
+          top: 67%;
         }
 
         input {
