@@ -174,7 +174,7 @@ const SingUpCont = styled.div<{ errorMessage: string }>`
         .errorMesage {
           display: ${(props) =>
             props.errorMessage.length > 0 ? "block" : "none"};
-          left: 0;
+          left: 6%;
           top: 67%;
         }
 
