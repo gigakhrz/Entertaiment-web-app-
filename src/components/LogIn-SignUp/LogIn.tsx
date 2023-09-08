@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "./schema";
 import axios from "axios";
+import { useState } from "react";
 
 interface LogInTypes {
   email: string;
@@ -25,6 +26,8 @@ const LogIn = (): JSX.Element => {
     resolver: yupResolver(schema),
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onSubmit = (data: LogInTypes) => {
     const email = data.email;
     const password = data.password;
@@ -36,10 +39,14 @@ const LogIn = (): JSX.Element => {
         });
       } catch (error) {
         const err = error as any;
+        if (err.response && err.response.status === 401) {
+          setErrorMessage("wrong password");
+        } else {
+          console.log(err);
+        }
       }
     };
     logIn();
-    console.log(data);
   };
 
   return (
