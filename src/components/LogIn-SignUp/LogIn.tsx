@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "./schema";
+import axios from "axios";
 
 interface LogInTypes {
   email: string;
@@ -12,7 +13,7 @@ interface LogInTypes {
 
 const LogIn = (): JSX.Element => {
   const handleGoToHomePage = (): void => {
-    // უნდა შეიცვალოს როცა გალაივდება საიტი
+    // უნდა შეიცვალოს როცა გალაივდება საიტი, ამასთან ერთად ყველა აქსიოს რექვესთი
     window.location.href = "http://localhost:5173/";
   };
 
@@ -25,6 +26,19 @@ const LogIn = (): JSX.Element => {
   });
 
   const onSubmit = (data: LogInTypes) => {
+    const email = data.email;
+    const password = data.password;
+    const logIn = async () => {
+      try {
+        await axios.post("http://localhost:3000/validate", {
+          email: email,
+          password: password,
+        });
+      } catch (error) {
+        const err = error as any;
+      }
+    };
+    logIn();
     console.log(data);
   };
 
