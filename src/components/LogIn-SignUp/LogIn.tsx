@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import logo from "../../../public/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import schema from "./schema";
@@ -26,6 +26,7 @@ const LogIn = (): JSX.Element => {
     resolver: yupResolver(schema),
   });
 
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = (data: LogInTypes) => {
@@ -37,12 +38,16 @@ const LogIn = (): JSX.Element => {
           email: email,
           password: password,
         });
+        navigate("/");
       } catch (error) {
         const err = error as any;
         if (err.response && err.response.status === 401) {
-          setErrorMessage("wrong password");
+          console.log("setted");
+          setErrorMessage("Wrong password");
+        } else if (err.response && err.response.status === 404) {
+          setErrorMessage("Email cannot be found");
         } else {
-          console.log(err);
+          console.log(error);
         }
       }
     };
@@ -50,7 +55,7 @@ const LogIn = (): JSX.Element => {
   };
 
   return (
-    <LogInCont>
+    <LogInCont err={errorMessage}>
       <img onClick={handleGoToHomePage} src={logo} alt="logo img" />
       <form className="logIn" onSubmit={handleSubmit(onSubmit)}>
         <h1>Log In</h1>
@@ -68,6 +73,7 @@ const LogIn = (): JSX.Element => {
               style={{ background: errors.email ? "red" : "" }}
             />
             <p>{errors.email?.message}</p>
+            <p className="emailError">Email is already in use</p>
           </label>
 
           <label>
@@ -82,6 +88,7 @@ const LogIn = (): JSX.Element => {
               style={{ background: errors.password ? "red" : "" }}
             />
             <p>{errors.password?.message}</p>
+            <p className="passwordError">{errorMessage}</p>
           </label>
         </div>
 
@@ -102,7 +109,7 @@ const LogIn = (): JSX.Element => {
 
 export default LogIn;
 
-const LogInCont = styled.div`
+const LogInCont = styled.div<{ err: string }>`
   margin-top: 48px;
   width: 100%;
   display: flex;
@@ -151,6 +158,18 @@ const LogInCont = styled.div`
           position: absolute;
           top: 15%;
           left: 65%;
+        }
+        .emailError {
+          display: ${(props) =>
+            props.err === "Email cannot be found" ? "block" : "none"};
+          left: 6%;
+          top: 55%;
+        }
+        .passwordError {
+          display: ${(props) =>
+            props.err === "Wrong password" ? "block" : "none"};
+          left: 6%;
+          top: 55%;
         }
 
         input {
