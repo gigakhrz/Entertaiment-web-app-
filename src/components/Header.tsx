@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import logo from "../../public/images/logo.svg";
 import { Link } from "react-router-dom";
+import avatar from "../../public/images/image-avatar.png";
+
 const Header = (): JSX.Element => {
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
@@ -45,6 +47,8 @@ const Header = (): JSX.Element => {
           </svg>
         </Link>
       </div>
+
+      <img className="avatarImg" src={avatar} alt="avatar image" />
     </HeaderContainr>
   );
 };
@@ -88,5 +92,12 @@ const HeaderContainr = styled.header<{ path: string }>`
     .bookmarked svg path {
       fill: ${(props) => (props.path === "/bookmarked" ? "white" : "")};
     }
+  }
+
+  .avatarImg {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--Pure-White, #fff);
+    border-radius: 24px;
   }
 `;
