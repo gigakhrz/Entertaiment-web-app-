@@ -6,7 +6,6 @@ import avatar from "../../public/images/image-avatar.png";
 const Header = (): JSX.Element => {
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
-  console.log(path);
 
   return (
     <HeaderContainr path={path}>
