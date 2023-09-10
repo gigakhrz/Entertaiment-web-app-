@@ -4,8 +4,36 @@ import SignUp from "./components/LogIn-SignUp/SingUp";
 import LogIn from "./components/LogIn-SignUp/LogIn";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
+import axios from "axios";
+import EntertainmentItem from "../type";
+import { useDispatch, useSelector } from "react-redux";
+import { setEntertainment } from "./features/allEntertainmentSlice";
+import { useEffect } from "react";
+import { RootState } from "./features/store";
 
 function App() {
+  //all entertainment state
+  const entertainment = useSelector((store: RootState) => store.entertainment);
+  console.log(entertainment);
+
+  const dispatch = useDispatch();
+
+  const fetchEntertainment = async (): Promise<void> => {
+    //უნდა შეიცვალოს როდესაც ბექ-ის სერვერი გალაივდება
+    const url = "http://localhost:3000/getEntertainment";
+    //Fetching entertainment from an API and saving it in Redux state.
+    try {
+      const response = await axios.get<EntertainmentItem[]>(url);
+      dispatch(setEntertainment(response.data));
+    } catch (error) {
+      console.log("can't fetch data");
+    }
+  };
+
+  useEffect(() => {
+    fetchEntertainment();
+  }, []);
+
   return (
     <Router>
       <AppContainer>
