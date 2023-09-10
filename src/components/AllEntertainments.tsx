@@ -1,6 +1,11 @@
+import { useSelector } from "react-redux";
 import { styled } from "styled-components";
+import { RootState } from "../features/store";
 
 const AllEntertainment = (): JSX.Element => {
+  //all entertainment state
+  const entertainment = useSelector((store: RootState) => store.entertainment);
+  console.log(entertainment);
   return (
     <Wrapper>
       <h4>Recomended for you</h4>
