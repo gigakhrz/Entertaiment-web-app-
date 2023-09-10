@@ -19,3 +19,5 @@ interface EntertainmentItem {
   isTrending: boolean;
   __v: number;
 }
+
+export default EntertainmentItem;
