@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./components/LogIn-SignUp/SingUp";
 import LogIn from "./components/LogIn-SignUp/LogIn";
 import Header from "./components/Header";
+import Filter from "./components/Filter";
 
 function App() {
   return (
@@ -10,11 +11,14 @@ function App() {
       <AppContainer>
         <Header />
         <Main>
-          <Routes>
-            <Route path="/" />
-            <Route path="/signUp" element={<SignUp />} />
-            <Route path="/logIn" element={<LogIn />} />
-          </Routes>
+          <Filter />
+          <MainCont>
+            <Routes>
+              <Route path="/" />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/logIn" element={<LogIn />} />
+            </Routes>
+          </MainCont>
         </Main>
       </AppContainer>
     </Router>
@@ -35,6 +39,13 @@ const AppContainer = styled.div`
 
 // Main components container
 const Main = styled.main`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+//  i need this element to wrap the elements below the filter, because the filter should be above them on any screen size
+const MainCont = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
