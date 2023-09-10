@@ -35,10 +35,12 @@ const AppContainer = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: #10141e;
+  gap: 26px;
 `;
 
 // Main components container
 const Main = styled.main`
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -46,6 +48,7 @@ const Main = styled.main`
 
 //  i need this element to wrap the elements below the filter, because the filter should be above them on any screen size
 const MainCont = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
