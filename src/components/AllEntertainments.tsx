@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import { styled } from "styled-components";
 import { RootState } from "../features/store";
+import dot from "../../public/images/Pasted image.png";
+import iconMovie from "../../public/images/icon-nav-movies.svg";
+import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -13,7 +16,19 @@ const AllEntertainment = (): JSX.Element => {
         {entertainment.entertainment.map((ent, index) => (
           <div key={index} className="container">
             <img src={ent.thumbnail.regular.small} alt="" />
-            <div className="title"></div>
+            <div className="title">
+              <h6>{ent.year}</h6>
+              <img className="dot" src={dot} alt="" />
+              <img
+                className="movie"
+                src={ent.category === "Movie" ? iconMovie : iconSeries}
+                alt=""
+              />
+              <h6>{ent.category}</h6>
+              <img className="dot" src={dot} alt="" />
+              <h6>{ent.rating}</h6>
+            </div>
+            <p className="name">{ent.title}</p>
           </div>
         ))}
       </div>
@@ -55,12 +70,42 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    gap: 6px;
 
     img {
       width: 164px;
     }
 
     .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: baseline;
+      gap: 6px;
+      margin-top: 4px;
+
+      h6 {
+        font-size: 11px;
+        font-weight: 300;
+        color: white;
+      }
+
+      .dot {
+        width: 2px;
+        height: 2px;
+      }
+
+      .movie {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: 500;
+      align-self: baseline;
+      color: white;
     }
   }
 `;
