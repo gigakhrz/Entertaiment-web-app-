@@ -13,6 +13,7 @@ const AllEntertainment = (): JSX.Element => {
         {entertainment.entertainment.map((ent, index) => (
           <div key={index} className="container">
             <img src={ent.thumbnail.regular.small} alt="" />
+            <div className="title"></div>
           </div>
         ))}
       </div>
@@ -57,6 +58,9 @@ const Wrapper = styled.div`
 
     img {
       width: 164px;
+    }
+
+    .title {
     }
   }
 `;
