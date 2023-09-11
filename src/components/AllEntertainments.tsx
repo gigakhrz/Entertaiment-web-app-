@@ -9,6 +9,12 @@ const AllEntertainment = (): JSX.Element => {
   return (
     <Wrapper>
       <h4>Recomended for you</h4>
+
+      {entertainment.entertainment.map((ent, index) => (
+        <div key={index}>
+          <img src={ent.thumbnail.regular.small} alt="" />
+        </div>
+      ))}
     </Wrapper>
   );
 };
