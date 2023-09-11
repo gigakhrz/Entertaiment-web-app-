@@ -9,12 +9,13 @@ const AllEntertainment = (): JSX.Element => {
   return (
     <Wrapper>
       <h4>Recomended for you</h4>
-
-      {entertainment.entertainment.map((ent, index) => (
-        <div key={index}>
-          <img src={ent.thumbnail.regular.small} alt="" />
-        </div>
-      ))}
+      <div className="mapCont">
+        {entertainment.entertainment.map((ent, index) => (
+          <div key={index} className="container">
+            <img src={ent.thumbnail.regular.small} alt="" />
+          </div>
+        ))}
+      </div>
     </Wrapper>
   );
 };
@@ -24,9 +25,38 @@ export default AllEntertainment;
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  padding: 0 16px;
   gap: 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 26px;
+
+  h4 {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: -0.31px;
+    color: white;
+    align-self: baseline;
+  }
+
+  .mapCont {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 15px;
+    column-gap: 15px;
+  }
+
+  .container {
+    width: 164px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    img {
+      width: 164px;
+    }
+  }
 `;
