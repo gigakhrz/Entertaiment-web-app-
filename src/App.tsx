@@ -6,16 +6,12 @@ import Header from "./components/Header";
 import Filter from "./components/Filter";
 import axios from "axios";
 import EntertainmentItem from "../type";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setEntertainment } from "./features/allEntertainmentSlice";
 import { useEffect } from "react";
-import { RootState } from "./features/store";
+import Home from "./components/Home";
 
 function App() {
-  //all entertainment state
-  const entertainment = useSelector((store: RootState) => store.entertainment);
-  console.log(entertainment);
-
   const dispatch = useDispatch();
 
   const fetchEntertainment = async (): Promise<void> => {
@@ -42,7 +38,7 @@ function App() {
           <Filter />
           <MainCont>
             <Routes>
-              <Route path="/" />
+              <Route path="/" element={<Home />} />
               <Route path="/signUp" element={<SignUp />} />
               <Route path="/logIn" element={<LogIn />} />
             </Routes>
