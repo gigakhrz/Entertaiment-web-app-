@@ -97,8 +97,9 @@ const Wrapper = styled.div`
       justify-content: center;
       top: 8px;
       right: 8px;
+
       .bookmarkImg {
-        width: 14px;
+        width: 12px;
         height: 14px;
       }
     }
