@@ -4,6 +4,7 @@ import { RootState } from "../features/store";
 import dot from "../../public/images/Pasted image.png";
 import iconMovie from "../../public/images/icon-nav-movies.svg";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
+import bookmark from "../../public/images/icon-bookmark-empty.svg";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -16,6 +17,13 @@ const AllEntertainment = (): JSX.Element => {
         {entertainment.entertainment.map((ent, index) => (
           <div key={index} className="container">
             <img src={ent.thumbnail.regular.small} alt="" />
+            <div className="bookmark">
+              <img
+                src={bookmark}
+                className="bookmarkImg"
+                alt="empty bookmark image"
+              />
+            </div>
             <div className="title">
               <h6>{ent.year}</h6>
               <img className="dot" src={dot} alt="" />
@@ -71,9 +79,28 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     gap: 6px;
+    position: relative;
 
     img {
       width: 164px;
+    }
+
+    .bookmark {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #10141e;
+      opacity: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 8px;
+      right: 8px;
+      .bookmarkImg {
+        width: 14px;
+        height: 14px;
+      }
     }
 
     .title {
