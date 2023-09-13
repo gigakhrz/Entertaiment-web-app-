@@ -5,6 +5,7 @@ import dot from "../../public/images/Pasted image.png";
 import iconMovie from "../../public/images/icon-nav-movies.svg";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 import bookmark from "../../public/images/icon-bookmark-empty.svg";
+import playIcon from "../../public/images/icon-play.svg";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -22,7 +23,12 @@ const AllEntertainment = (): JSX.Element => {
                 src={ent.thumbnail.regular.small}
                 alt="image"
               />
-              <div className="overlay"></div>
+              <div className="overlay">
+                <button className="playWrapper">
+                  <img className="playIcon" src={playIcon} alt="play icon " />
+                  <p>Play</p>
+                </button>
+              </div>
             </div>
             <div className="bookmark">
               <img
@@ -96,22 +102,54 @@ const Wrapper = styled.div`
         border-radius: 8px;
         transition: transform 0.3s ease 0s;
       }
+
+      .overlay {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100px;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        bottom: 0;
+        border-radius: 8px;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+
+        .playWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 24px;
+          border-radius: 28.5px;
+          border: none;
+          outline: none;
+          gap: 5px;
+          background: rgba(255, 255, 255, 0.25);
+
+          .playIcon {
+            width: 15px;
+            height: 15px;
+            z-index: 2;
+          }
+
+          p {
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            z-index: 2;
+          }
+        }
+      }
     }
 
     .imgCont:hover .overlay {
-      display: block;
-      width: 100%;
-      min-height: 100px;
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      bottom: 0;
-      border-radius: 8px;
-      background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 0, 0, 0.5) 100%
-      );
+      display: flex;
     }
 
     .bookmark {
@@ -126,6 +164,7 @@ const Wrapper = styled.div`
       justify-content: center;
       top: 8px;
       right: 8px;
+      z-index: 2;
 
       .bookmarkImg {
         width: 12px;
