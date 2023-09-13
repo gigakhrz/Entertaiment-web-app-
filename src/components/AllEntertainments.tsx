@@ -16,7 +16,14 @@ const AllEntertainment = (): JSX.Element => {
       <div className="mapCont">
         {entertainment.entertainment.map((ent, index) => (
           <div key={index} className="container">
-            <img src={ent.thumbnail.regular.small} alt="" />
+            <div className="imgCont">
+              <img
+                className="entImg"
+                src={ent.thumbnail.regular.small}
+                alt="image"
+              />
+              <div className="overlay"></div>
+            </div>
             <div className="bookmark">
               <img
                 src={bookmark}
@@ -81,8 +88,30 @@ const Wrapper = styled.div`
     gap: 6px;
     position: relative;
 
-    img {
-      width: 164px;
+    .imgCont {
+      position: relative;
+
+      .entImg {
+        width: 164px;
+        border-radius: 8px;
+        transition: transform 0.3s ease 0s;
+      }
+    }
+
+    .imgCont:hover .overlay {
+      display: block;
+      width: 100%;
+      min-height: 100px;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      border-radius: 8px;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
     }
 
     .bookmark {
