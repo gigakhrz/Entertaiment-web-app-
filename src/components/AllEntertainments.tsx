@@ -93,12 +93,19 @@ const Wrapper = styled.div`
     justify-content: center;
     gap: 6px;
     position: relative;
+    cursor: pointer;
 
     .imgCont {
       position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      min-height: 114px;
 
       .entImg {
         width: 164px;
+        height: 100%;
         border-radius: 8px;
         transition: transform 0.3s ease 0s;
       }
@@ -150,6 +157,11 @@ const Wrapper = styled.div`
 
     .imgCont:hover .overlay {
       display: flex;
+    }
+
+    .imgCont:hover .entImg {
+      display: flex;
+      transform: scale(1.05);
     }
 
     .bookmark {
