@@ -37,6 +37,7 @@ const AllEntertainment = (): JSX.Element => {
                 alt="empty bookmark image"
               />
             </div>
+            {/* The bottom side of the element where the title, rating, and other information are located. */}
             <div className="title">
               <h6>{ent.year}</h6>
               <img className="dot" src={dot} alt="" />
@@ -82,11 +83,15 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     align-items: center;
     row-gap: 15px;
-    column-gap: 15px;
+    column-gap: 4%;
+
+    @media screen and (min-width: 420px) {
+      column-gap: 3%;
+    }
   }
 
   .container {
-    width: 164px;
+    width: 48%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -104,7 +109,7 @@ const Wrapper = styled.div`
       min-height: 114px;
 
       .entImg {
-        width: 164px;
+        width: 100%;
         height: 100%;
         border-radius: 8px;
         transition: transform 0.3s ease 0s;
