@@ -14,9 +14,9 @@ interface LogInTypes {
   password: string;
 }
 
-const dispatch = useDispatch();
-
 const LogIn = (): JSX.Element => {
+  const dispatch = useDispatch();
+
   const handleGoToHomePage = (): void => {
     // უნდა შეიცვალოს როცა გალაივდება საიტი, ამასთან ერთად ყველა აქსიოს რექვესთი
     window.location.href = "http://localhost:5173/";
