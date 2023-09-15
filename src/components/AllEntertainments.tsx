@@ -10,6 +10,7 @@ import playIcon from "../../public/images/icon-play.svg";
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
   const entertainment = useSelector((store: RootState) => store.entertainment);
+
   console.log(entertainment);
   return (
     <Wrapper>

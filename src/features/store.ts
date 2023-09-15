@@ -1,3 +1,4 @@
+// store.ts
 import { configureStore } from "@reduxjs/toolkit";
 import allEntertainmentSlice, {
   AllEntertainment,
@@ -13,7 +14,7 @@ const store = configureStore({
 
 export type RootState = {
   entertainment: AllEntertainment;
-  loggedIn: IsLoggedIn;
+  isLoggedIn: IsLoggedIn; // Update this line
 };
 
 export default store;

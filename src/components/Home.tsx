@@ -4,10 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../features/store";
 
 const Home = (): JSX.Element => {
-  const isLoggedIn = useSelector((store: RootState) => store.loggedIn);
-
-  console.log(isLoggedIn);
-
   return (
     <HomeWrapper>
       <AllEntertainment />
