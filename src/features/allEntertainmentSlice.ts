@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import Entertainment from "../../type";
 
-export interface allEntertainment {
+export interface AllEntertainment {
   entertainment: Entertainment[];
 }
 
-const initialState: allEntertainment = {
+const initialState: AllEntertainment = {
   entertainment: [],
 };
 
