@@ -6,11 +6,15 @@ import { useForm } from "react-hook-form";
 import schema from "./schema";
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setIsLoggedIn } from "../../features/isLoggedInSlice";
 
 interface LogInTypes {
   email: string;
   password: string;
 }
+
+const dispatch = useDispatch();
 
 const LogIn = (): JSX.Element => {
   const handleGoToHomePage = (): void => {
@@ -38,6 +42,7 @@ const LogIn = (): JSX.Element => {
           email: email,
           password: password,
         });
+        dispatch(setIsLoggedIn(true));
         navigate("/");
       } catch (error) {
         const err = error as any;
