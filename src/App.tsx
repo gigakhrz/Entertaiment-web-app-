@@ -13,16 +13,15 @@ import Home from "./components/Home";
 import { RootState } from "./features/store";
 
 function App() {
+  // Make sure that the user is registered
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
   );
-
+  // catch userEmail to send get request for user's entertainments.
   const userEmail = useSelector(
     (store: RootState) => store.userEmail.userEmail
   );
 
-  console.log(userEmail);
-  console.log(isLoggedIn);
   const dispatch = useDispatch();
 
   const fetchEntertainment = async (): Promise<void> => {
@@ -37,19 +36,20 @@ function App() {
         console.log("can't fetch data");
       }
     } else {
-      // fetch user's data
-      const url = "http://localhost:3000/users";
+      const url = `http://localhost:3000/user?email=${userEmail}`;
+
       try {
-        // const response = await axios.get();
+        const response = await axios.get(url);
+        console.log(response.data);
       } catch (error) {
-        console.log("can't fetch user's data");
+        console.error("Error fetching user's data:", error);
       }
     }
   };
 
   useEffect(() => {
     fetchEntertainment();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <Router>
