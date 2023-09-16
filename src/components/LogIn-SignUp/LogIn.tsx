@@ -8,6 +8,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "../../features/isLoggedInSlice";
+import { setUserEmail } from "../../features/userEmailSlice";
 
 interface LogInTypes {
   email: string;
@@ -43,6 +44,7 @@ const LogIn = (): JSX.Element => {
           password: password,
         });
         dispatch(setIsLoggedIn(true));
+        dispatch(setUserEmail(email));
         navigate("/");
       } catch (error) {
         const err = error as any;

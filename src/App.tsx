@@ -16,6 +16,13 @@ function App() {
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
   );
+
+  const userEmail = useSelector(
+    (store: RootState) => store.userEmail.userEmail
+  );
+
+  console.log(userEmail);
+  console.log(isLoggedIn);
   const dispatch = useDispatch();
 
   const fetchEntertainment = async (): Promise<void> => {
