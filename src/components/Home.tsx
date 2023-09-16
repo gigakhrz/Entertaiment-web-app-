@@ -1,7 +1,5 @@
 import { styled } from "styled-components";
 import AllEntertainment from "./AllEntertainments";
-import { useSelector } from "react-redux";
-import { RootState } from "../features/store";
 
 const Home = (): JSX.Element => {
   return (

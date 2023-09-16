@@ -6,23 +6,37 @@ import Header from "./components/Header";
 import Filter from "./components/Filter";
 import axios from "axios";
 import EntertainmentItem from "../type";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setEntertainment } from "./features/allEntertainmentSlice";
 import { useEffect } from "react";
 import Home from "./components/Home";
+import { RootState } from "./features/store";
 
 function App() {
+  const isLoggedIn = useSelector(
+    (store: RootState) => store.isLoggedIn.loggedIn
+  );
   const dispatch = useDispatch();
 
   const fetchEntertainment = async (): Promise<void> => {
-    //უნდა შეიცვალოს როდესაც ბექ-ის სერვერი გალაივდება
-    const url = "http://localhost:3000/getEntertainment";
-    //Fetching entertainment from an API and saving it in Redux state.
-    try {
-      const response = await axios.get<EntertainmentItem[]>(url);
-      dispatch(setEntertainment(response.data));
-    } catch (error) {
-      console.log("can't fetch data");
+    if (isLoggedIn === false) {
+      //უნდა შეიცვალოს როდესაც ბექ-ის სერვერი გალაივდება
+      const url = "http://localhost:3000/getEntertainment";
+      //Fetching entertainment from an API and saving it in Redux state.
+      try {
+        const response = await axios.get<EntertainmentItem[]>(url);
+        dispatch(setEntertainment(response.data));
+      } catch (error) {
+        console.log("can't fetch data");
+      }
+    } else {
+      // fetch user's data
+      const url = "http://localhost:3000/users";
+      try {
+        // const response = await axios.get();
+      } catch (error) {
+        console.log("can't fetch user's data");
+      }
     }
   };
 
