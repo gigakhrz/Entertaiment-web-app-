@@ -5,11 +5,33 @@ import dot from "../../public/images/Pasted image.png";
 import iconMovie from "../../public/images/icon-nav-movies.svg";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 import bookmark from "../../public/images/icon-bookmark-empty.svg";
+import fullbookmark from "../../public/images/icon-bookmark-full.svg";
 import playIcon from "../../public/images/icon-play.svg";
+import axios from "axios";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
   const entertainment = useSelector((store: RootState) => store.entertainment);
+
+  // catch userEmail to send put request for user's entertainments.
+  const userEmail = useSelector(
+    (store: RootState) => store.userEmail.userEmail
+  );
+
+  // აქ არიისს უამრავი რამ შესაცვლელიიიიიიიიიიიი
+  //bookmark entertainment
+  const updateEntertainment = async (bookmarked: boolean, id: string) => {
+    try {
+      await axios.put(
+        `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
+        {
+          isBookmarked: bookmarked,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   console.log(entertainment);
   return (
@@ -33,7 +55,8 @@ const AllEntertainment = (): JSX.Element => {
             </div>
             <div className="bookmark">
               <img
-                src={bookmark}
+                onClick={() => updateEntertainment(!ent.isBookmarked, ent._id)}
+                src={ent.isBookmarked === false ? bookmark : fullbookmark}
                 className="bookmarkImg"
                 alt="empty bookmark image"
               />

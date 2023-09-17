@@ -22,6 +22,7 @@ function App() {
     (store: RootState) => store.userEmail.userEmail
   );
 
+  console.log(isLoggedIn);
   const dispatch = useDispatch();
 
   const fetchEntertainment = async (): Promise<void> => {
@@ -40,7 +41,7 @@ function App() {
 
       try {
         const response = await axios.get(url);
-        console.log(response.data);
+        dispatch(setEntertainment(response.data));
       } catch (error) {
         console.error("Error fetching user's data:", error);
       }
