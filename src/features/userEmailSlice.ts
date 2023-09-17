@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface UserData {
+export interface UserInfo {
   userEmail: string;
 }
 
-const initialState: UserData = {
+const initialState: UserInfo = {
   userEmail: "",
 };
 
