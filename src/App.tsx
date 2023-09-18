@@ -58,15 +58,6 @@ function App() {
   console.log(userEmail);
 
   useEffect(() => {
-    // Check if the user is logged in from localStorage
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const userEmail = localStorage.getItem("userEmail");
-
-    if (isLoggedIn && userEmail) {
-      dispatch(setIsLoggedIn(true));
-      dispatch(setUserEmail(userEmail));
-    }
-
     fetchEntertainment();
   }, [isLoggedIn]);
 
