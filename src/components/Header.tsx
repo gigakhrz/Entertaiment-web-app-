@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import logo from "../../public/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import avatar from "../../public/images/image-avatar.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store";
 
 const Header = (): JSX.Element => {
+  useNavigate();
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
 

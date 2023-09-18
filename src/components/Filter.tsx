@@ -1,7 +1,9 @@
 import { styled } from "styled-components";
 import search from "../../public/images/icon-search.svg";
+import { useNavigate } from "react-router-dom";
 
 const Filter = (): JSX.Element => {
+  useNavigate();
   const path = window.location.pathname;
 
   return (
