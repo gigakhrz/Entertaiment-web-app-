@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import avatar from "../../public/images/image-avatar.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store";
+import { useState } from "react";
 
 const Header = (): JSX.Element => {
   useNavigate();
@@ -14,11 +15,10 @@ const Header = (): JSX.Element => {
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
   );
-
-  console.log(path);
+  const [openFrame, setOpenFrame] = useState<boolean>(false);
 
   return (
-    <HeaderContainr path={path}>
+    <HeaderContainr path={path} openFrame={openFrame}>
       <img src={logo} alt="Logo img" />
 
       {/* Nav bar for categories which will redirect to another page based on the selected shape. */}
@@ -58,7 +58,12 @@ const Header = (): JSX.Element => {
       </div>
 
       <div className="profileControler">
-        <img className="avatarImg" src={avatar} alt="avatar image" />
+        <img
+          onClick={() => setOpenFrame(!openFrame)}
+          className="avatarImg"
+          src={avatar}
+          alt="avatar image"
+        />
         <div className="logInLogOut">
           {isLoggedIn === false ? (
             <div className="login">
@@ -76,7 +81,7 @@ const Header = (): JSX.Element => {
 
 export default Header;
 
-const HeaderContainr = styled.header<{ path: string }>`
+const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
   display: ${(props) =>
     props.path === "/logIn"
       ? "none"
@@ -122,6 +127,7 @@ const HeaderContainr = styled.header<{ path: string }>`
       height: 24px;
       border: 1px solid var(--Pure-White, #fff);
       border-radius: 24px;
+      cursor: pointer;
     }
 
     .logInLogOut {
@@ -130,7 +136,7 @@ const HeaderContainr = styled.header<{ path: string }>`
       height: 75px;
       top: 50px;
       left: -125px;
-      display: flex;
+      display: ${(props) => (props.openFrame ? "flex" : "none")};
       justify-content: center;
       align-items: center;
       border-radius: 10px;
