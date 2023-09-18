@@ -52,7 +52,9 @@ const LogIn = (): JSX.Element => {
         localStorage.setItem("userEmail", email);
 
         //navigate home page
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 200);
       } catch (error) {
         const err = error as any;
         if (err.response && err.response.status === 401) {
