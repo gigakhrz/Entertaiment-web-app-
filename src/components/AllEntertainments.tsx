@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { styled } from "styled-components";
 import { RootState } from "../features/store";
 import dot from "../../public/images/Pasted image.png";
@@ -8,6 +8,7 @@ import bookmark from "../../public/images/icon-bookmark-empty.svg";
 import fullbookmark from "../../public/images/icon-bookmark-full.svg";
 import playIcon from "../../public/images/icon-play.svg";
 import axios from "axios";
+import { fetchEntertainment } from "../App";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -18,7 +19,13 @@ const AllEntertainment = (): JSX.Element => {
     (store: RootState) => store.userEmail.userEmail
   );
 
-  // აქ არიისს უამრავი რამ შესაცვლელიიიიიიიიიიიი
+  // Make sure that the user is logged in
+  const isLoggedIn = useSelector(
+    (store: RootState) => store.isLoggedIn.loggedIn
+  );
+
+  const dispatch = useDispatch();
+
   //bookmark entertainment
   const updateEntertainment = async (bookmarked: boolean, id: string) => {
     try {
@@ -28,6 +35,8 @@ const AllEntertainment = (): JSX.Element => {
           isBookmarked: bookmarked,
         }
       );
+
+      fetchEntertainment(isLoggedIn, userEmail, dispatch);
     } catch (error) {
       console.log(error);
     }

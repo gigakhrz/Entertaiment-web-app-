@@ -13,6 +13,33 @@ import Home from "./components/Home";
 import { RootState } from "./features/store";
 import { setIsLoggedIn } from "./features/isLoggedInSlice";
 import { setUserEmail } from "./features/userEmailSlice";
+import { Dispatch } from "@reduxjs/toolkit";
+
+export const fetchEntertainment = async (
+  isLoggedIn: boolean,
+  userEmail: string,
+  dispatch: Dispatch
+): Promise<void> => {
+  if (isLoggedIn) {
+    const url = `http://localhost:3000/user?email=${userEmail}`;
+
+    try {
+      const response = await axios.get(url);
+      dispatch(setEntertainment(response.data));
+    } catch (error) {
+      console.error("Error fetching user's data:", error);
+    }
+  } else {
+    const url = "http://localhost:3000/getEntertainment";
+
+    try {
+      const response = await axios.get<EntertainmentItem[]>(url);
+      dispatch(setEntertainment(response.data));
+    } catch (error) {
+      console.log("can't fetch data");
+    }
+  }
+};
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +50,7 @@ function App() {
     dispatch(setIsLoggedIn(true));
     dispatch(setUserEmail(userEmailAdres));
   }
-  // Make sure that the user is registered
+  // Make sure that the user is logged in
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
   );
@@ -33,32 +60,10 @@ function App() {
     (store: RootState) => store.userEmail.userEmail
   );
 
-  const fetchEntertainment = async (): Promise<void> => {
-    if (isLoggedIn) {
-      const url = `http://localhost:3000/user?email=${userEmail}`;
-
-      try {
-        const response = await axios.get(url);
-        dispatch(setEntertainment(response.data));
-      } catch (error) {
-        console.error("Error fetching user's data:", error);
-      }
-    } else {
-      const url = "http://localhost:3000/getEntertainment";
-
-      try {
-        const response = await axios.get<EntertainmentItem[]>(url);
-        dispatch(setEntertainment(response.data));
-      } catch (error) {
-        console.log("can't fetch data");
-      }
-    }
-  };
-
   console.log(userEmail);
 
   useEffect(() => {
-    fetchEntertainment();
+    fetchEntertainment(isLoggedIn, userEmail, dispatch);
   }, [isLoggedIn]);
 
   return (
