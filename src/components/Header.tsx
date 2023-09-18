@@ -2,12 +2,15 @@ import styled from "styled-components";
 import logo from "../../public/images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import avatar from "../../public/images/image-avatar.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../features/store";
 import { useState } from "react";
+import { setIsLoggedIn } from "../features/isLoggedInSlice";
+import { setUserEmail } from "../features/userEmailSlice";
 
 const Header = (): JSX.Element => {
   useNavigate();
+  const dispatch = useDispatch();
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
 
@@ -15,7 +18,19 @@ const Header = (): JSX.Element => {
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
   );
+
+  //state wich will open frame
   const [openFrame, setOpenFrame] = useState<boolean>(false);
+
+  //signOut function
+  const logOut = (): void => {
+    dispatch(setIsLoggedIn(false));
+    dispatch(setUserEmail(""));
+
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userEmail");
+    setOpenFrame(!openFrame);
+  };
 
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
@@ -67,11 +82,33 @@ const Header = (): JSX.Element => {
         <div className="logInLogOut">
           {isLoggedIn === false ? (
             <div className="login">
-              <Link to="/logIn">Login</Link>
-              <Link to="/signUp">Sign Up</Link>
+              <Link
+                onClick={() => {
+                  setOpenFrame(!openFrame);
+                }}
+                to="/logIn"
+              >
+                Login
+              </Link>
+              <Link
+                onClick={() => {
+                  setOpenFrame(!openFrame);
+                }}
+                to="/signUp"
+              >
+                Sign Up
+              </Link>
             </div>
           ) : (
-            <button className="signOut">Sign out</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                logOut();
+              }}
+              className="signOut"
+            >
+              Sign out
+            </button>
           )}
         </div>
       </div>
