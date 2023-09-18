@@ -43,8 +43,15 @@ const LogIn = (): JSX.Element => {
           email: email,
           password: password,
         });
+
         dispatch(setIsLoggedIn(true));
         dispatch(setUserEmail(email));
+
+        // Save user information to localStorage
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userEmail", email);
+
+        //navigate home page
         navigate("/");
       } catch (error) {
         const err = error as any;

@@ -11,8 +11,18 @@ import { setEntertainment } from "./features/allEntertainmentSlice";
 import { useEffect } from "react";
 import Home from "./components/Home";
 import { RootState } from "./features/store";
+import { setIsLoggedIn } from "./features/isLoggedInSlice";
+import { setUserEmail } from "./features/userEmailSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const loggedIn = localStorage.getItem("isLoggedIn");
+  const userEmailAdres = localStorage.getItem("userEmail");
+
+  if (loggedIn && userEmailAdres) {
+    dispatch(setIsLoggedIn(true));
+    dispatch(setUserEmail(userEmailAdres));
+  }
   // Make sure that the user is registered
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
@@ -23,21 +33,8 @@ function App() {
     (store: RootState) => store.userEmail.userEmail
   );
 
-  console.log(isLoggedIn);
-  const dispatch = useDispatch();
-
   const fetchEntertainment = async (): Promise<void> => {
-    if (isLoggedIn === false) {
-      //უნდა შეიცვალოს როდესაც ბექ-ის სერვერი გალაივდება
-      const url = "http://localhost:3000/getEntertainment";
-      //Fetching entertainment from an API and saving it in Redux state.
-      try {
-        const response = await axios.get<EntertainmentItem[]>(url);
-        dispatch(setEntertainment(response.data));
-      } catch (error) {
-        console.log("can't fetch data");
-      }
-    } else {
+    if (isLoggedIn) {
       const url = `http://localhost:3000/user?email=${userEmail}`;
 
       try {
@@ -46,10 +43,30 @@ function App() {
       } catch (error) {
         console.error("Error fetching user's data:", error);
       }
+    } else {
+      const url = "http://localhost:3000/getEntertainment";
+
+      try {
+        const response = await axios.get<EntertainmentItem[]>(url);
+        dispatch(setEntertainment(response.data));
+      } catch (error) {
+        console.log("can't fetch data");
+      }
     }
   };
 
+  console.log(userEmail);
+
   useEffect(() => {
+    // Check if the user is logged in from localStorage
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const userEmail = localStorage.getItem("userEmail");
+
+    if (isLoggedIn && userEmail) {
+      dispatch(setIsLoggedIn(true));
+      dispatch(setUserEmail(userEmail));
+    }
+
     fetchEntertainment();
   }, [isLoggedIn]);
 
