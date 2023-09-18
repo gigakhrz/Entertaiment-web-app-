@@ -17,6 +17,7 @@ function App() {
   const isLoggedIn = useSelector(
     (store: RootState) => store.isLoggedIn.loggedIn
   );
+
   // catch userEmail to send get request for user's entertainments.
   const userEmail = useSelector(
     (store: RootState) => store.userEmail.userEmail

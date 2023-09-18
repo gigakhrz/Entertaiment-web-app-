@@ -2,10 +2,19 @@ import styled from "styled-components";
 import logo from "../../public/images/logo.svg";
 import { Link } from "react-router-dom";
 import avatar from "../../public/images/image-avatar.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../features/store";
 
 const Header = (): JSX.Element => {
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
+
+  // Make sure that the user is registered
+  const isLoggedIn = useSelector(
+    (store: RootState) => store.isLoggedIn.loggedIn
+  );
+
+  console.log(path);
 
   return (
     <HeaderContainr path={path}>
@@ -47,7 +56,19 @@ const Header = (): JSX.Element => {
         </Link>
       </div>
 
-      <img className="avatarImg" src={avatar} alt="avatar image" />
+      <div className="profileControler">
+        <img className="avatarImg" src={avatar} alt="avatar image" />
+        <div className="logInLogOut">
+          {isLoggedIn === false ? (
+            <div className="login">
+              <Link to="/logIn">Login</Link>
+              <Link to="/signUp">Sign Up</Link>
+            </div>
+          ) : (
+            <button className="signOut">Sign out</button>
+          )}
+        </div>
+      </div>
     </HeaderContainr>
   );
 };
@@ -93,10 +114,43 @@ const HeaderContainr = styled.header<{ path: string }>`
     }
   }
 
-  .avatarImg {
-    width: 24px;
-    height: 24px;
-    border: 1px solid var(--Pure-White, #fff);
-    border-radius: 24px;
+  .profileControler {
+    position: relative;
+    .avatarImg {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--Pure-White, #fff);
+      border-radius: 24px;
+    }
+
+    .logInLogOut {
+      position: absolute;
+      width: 150px;
+      height: 75px;
+      top: 50px;
+      left: -125px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background-color: #161d2f;
+
+      button {
+      }
+    }
+
+    .login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 0 10px;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
   }
 `;
