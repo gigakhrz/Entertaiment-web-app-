@@ -134,7 +134,7 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       position: absolute;
       width: 150px;
       height: 75px;
-      top: 50px;
+      top: 60px;
       left: -125px;
       display: ${(props) => (props.openFrame ? "flex" : "none")};
       justify-content: center;
@@ -143,6 +143,16 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       background-color: #161d2f;
 
       button {
+        width: 90px;
+        padding: 5px 0;
+        background-color: #fc4747;
+        border: none;
+        outline: none;
+        color: white;
+        font-weight: 300px;
+        font-size: 15px;
+        border-radius: 5px;
+        cursor: pointer;
       }
     }
 
