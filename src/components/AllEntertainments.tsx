@@ -28,17 +28,21 @@ const AllEntertainment = (): JSX.Element => {
 
   //bookmark entertainment
   const updateEntertainment = async (bookmarked: boolean, id: string) => {
-    try {
-      await axios.put(
-        `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
-        {
-          isBookmarked: bookmarked,
-        }
-      );
+    if (isLoggedIn) {
+      try {
+        await axios.put(
+          `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
+          {
+            isBookmarked: bookmarked,
+          }
+        );
 
-      fetchEntertainment(isLoggedIn, userEmail, dispatch);
-    } catch (error) {
-      console.log(error);
+        fetchEntertainment(isLoggedIn, userEmail, dispatch);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("please log in to bookmark");
     }
   };
 
