@@ -10,7 +10,7 @@ import { setIsLoggedIn } from "../features/isLoggedInSlice";
 import { setUserEmail } from "../features/userEmailSlice";
 
 const Header = (): JSX.Element => {
-  useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
@@ -83,14 +83,16 @@ const Header = (): JSX.Element => {
         <div className="logInLogOut">
           {isLoggedIn === false ? (
             <div className="login">
-              <Link
+              <button
                 onClick={() => {
                   setOpenFrame(!openFrame);
+                  setTimeout(() => {
+                    navigate("/logIn");
+                  }, 500);
                 }}
-                to="/logIn"
               >
                 Login
-              </Link>
+              </button>
               <Link
                 onClick={() => {
                   setOpenFrame(!openFrame);
