@@ -9,6 +9,7 @@ import fullbookmark from "../../public/images/icon-bookmark-full.svg";
 import playIcon from "../../public/images/icon-play.svg";
 import axios from "axios";
 import { fetchEntertainment } from "../App";
+import { useEffect, useState } from "react";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -42,9 +43,21 @@ const AllEntertainment = (): JSX.Element => {
         console.log(error);
       }
     } else {
-      console.log("please log in to bookmark");
+      setShowMessage(true);
     }
   };
+
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (showMessage) {
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 4000); // 4000 milliseconds = 4 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [showMessage]);
 
   console.log(entertainment);
   return (
@@ -90,6 +103,16 @@ const AllEntertainment = (): JSX.Element => {
             <p className="name">{ent.title}</p>
           </div>
         ))}
+
+        <div
+          className="messageContainer"
+          style={{
+            position: showMessage ? "absolute" : "fixed",
+            right: showMessage ? "10px" : "-100%",
+          }}
+        >
+          <p>Please log in to bookmark</p>
+        </div>
       </div>
     </Wrapper>
   );
@@ -257,5 +280,20 @@ const Wrapper = styled.div`
       align-self: baseline;
       color: white;
     }
+  }
+
+  .messageContainer {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    top: 10px;
+    background-color: red;
+    padding: 0 8px;
+    justify-content: center;
+    color: white;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    transition: 0.5s;
   }
 `;
