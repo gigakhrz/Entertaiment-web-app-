@@ -86,21 +86,20 @@ const Header = (): JSX.Element => {
               <button
                 onClick={() => {
                   setOpenFrame(!openFrame);
-                  setTimeout(() => {
-                    navigate("/logIn");
-                  }, 500);
                 }}
               >
                 Login
               </button>
-              <Link
+              <button
                 onClick={() => {
                   setOpenFrame(!openFrame);
+                  setTimeout(() => {
+                    navigate("/signUp");
+                  }, 500);
                 }}
-                to="/signUp"
               >
                 Sign Up
-              </Link>
+              </button>
             </div>
           ) : (
             <button
