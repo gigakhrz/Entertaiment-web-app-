@@ -7,3 +7,5 @@ const Bookmarked = (): JSX.Element => {
 };
 
 export default Bookmarked;
+
+const bookmarkWrapper = styled.div``;

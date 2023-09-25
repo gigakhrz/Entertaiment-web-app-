@@ -27,6 +27,8 @@ const AllEntertainment = (): JSX.Element => {
 
   const dispatch = useDispatch();
 
+  console.log("https://dev-jobs-web-app-plum.vercel.app/");
+
   //bookmark entertainment
   const updateEntertainment = async (bookmarked: boolean, id: string) => {
     if (isLoggedIn) {
