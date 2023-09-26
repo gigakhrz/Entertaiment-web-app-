@@ -1,6 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { styled } from "styled-components";
 import { RootState } from "../features/store";
+import bookmark from "../../public/images/icon-bookmark-empty.svg";
+import fullbookmark from "../../public/images/icon-bookmark-full.svg";
+import playIcon from "../../public/images/icon-play.svg";
+import iconMovie from "../../public/images/icon-nav-movies.svg";
+import iconSeries from "../../public/images/icon-nav-tv-series.svg";
+import axios from "axios";
+import dot from "../../public/images/Pasted image.png";
+import { fetchEntertainment } from "../App";
 
 const Bookmarked = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -15,9 +23,32 @@ const Bookmarked = (): JSX.Element => {
     (store: RootState) => store.isLoggedIn.loggedIn
   );
 
+  // catch userEmail to send put request for user's entertainments.
+  const userEmail = useSelector(
+    (store: RootState) => store.userEmail.userEmail
+  );
+
   const bookmarkedData = entertainment.filter((item) => {
     item.isBookmarked === true;
   });
+
+  //bookmark entertainment
+  const updateEntertainment = async (bookmarked: boolean, id: string) => {
+    if (isLoggedIn) {
+      try {
+        await axios.put(
+          `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
+          {
+            isBookmarked: bookmarked,
+          }
+        );
+
+        fetchEntertainment(isLoggedIn, userEmail, dispatch);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <BookmarkWrapper>
