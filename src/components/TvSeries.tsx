@@ -32,7 +32,7 @@ const TvSeries = (): JSX.Element => {
 
   const tvSeries = entertainment.filter((item) => {
     console.log(item.isBookmarked);
-    return item.isBookmarked === true;
+    return item.category === "TV Series";
   });
 
   //bookmark entertainment
