@@ -6,6 +6,8 @@ const Filter = (): JSX.Element => {
   useNavigate();
   const path = window.location.pathname;
 
+  console.log(path);
+
   return (
     <FilterCont path={path}>
       <button>
@@ -17,11 +19,11 @@ const Filter = (): JSX.Element => {
         placeholder={
           path === "/"
             ? "Search for movies or"
-            : path === "movies"
+            : path === "/movies"
             ? "Search for movies"
-            : path === "tv-series"
+            : path === "/tv-series"
             ? "Search for TV series"
-            : path === "bookmarked"
+            : path === "/bookmarked"
             ? "Search for bookmarke"
             : ""
         }
@@ -34,16 +36,16 @@ export default Filter;
 
 const FilterCont = styled.form<{ path: string }>`
   padding: 0 16px;
+  height: 28px;
   display: ${(props) =>
     props.path === "/logIn"
       ? "none"
       : props.path === "/signUp"
       ? "none"
       : "flex"};
-  align-items: center;
-  align-items: flex-end;
   gap: 16px;
   width: 100%;
+  align-items: center;
 
   button {
     border: none;
@@ -58,6 +60,7 @@ const FilterCont = styled.form<{ path: string }>`
     outline: none;
     height: 20px;
     width: 100%;
+    align-self: flex-end;
     cursor: pointer;
     font-size: 16px;
     font-weight: 300;
