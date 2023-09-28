@@ -13,6 +13,8 @@ import { fetchEntertainment } from "../App";
 const Bookmarked = (): JSX.Element => {
   const dispatch = useDispatch();
 
+  //კომპონენტად შეიძლება გატანა იმ დივის რომელიც იმაპება.
+
   //all entertainment state
   const entertainment = useSelector(
     (store: RootState) => store.entertainment.entertainment
@@ -29,7 +31,8 @@ const Bookmarked = (): JSX.Element => {
   );
 
   const bookmarkedData = entertainment.filter((item) => {
-    item.isBookmarked === true;
+    console.log(item.isBookmarked);
+    return item.isBookmarked === true;
   });
 
   //bookmark entertainment
@@ -49,6 +52,8 @@ const Bookmarked = (): JSX.Element => {
       }
     }
   };
+
+  console.log(bookmarkedData);
 
   return (
     <BookmarkWrapper>
@@ -110,11 +115,14 @@ export default Bookmarked;
 const BookmarkWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
   gap: 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 26px;
+  width: 100%;
+  padding: 0 16px;
 
   h4 {
     font-size: 20px;
@@ -122,5 +130,151 @@ const BookmarkWrapper = styled.div`
     letter-spacing: -0.31px;
     color: white;
     align-self: baseline;
+  }
+
+  .mapCont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 15px;
+    column-gap: 4%;
+
+    @media screen and (min-width: 420px) {
+      column-gap: 3%;
+    }
+  }
+
+  .container {
+    width: 48%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    position: relative;
+    cursor: pointer;
+
+    .imgCont {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      min-height: 114px;
+
+      .entImg {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        transition: transform 0.3s ease 0s;
+      }
+
+      .overlay {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100px;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        bottom: 0;
+        border-radius: 8px;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+
+        .playWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 24px;
+          border-radius: 28.5px;
+          border: none;
+          outline: none;
+          gap: 5px;
+          background: rgba(255, 255, 255, 0.25);
+
+          .playIcon {
+            width: 15px;
+            height: 15px;
+            z-index: 2;
+          }
+
+          p {
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            z-index: 2;
+          }
+        }
+      }
+    }
+
+    .imgCont:hover .overlay {
+      display: flex;
+    }
+
+    .imgCont:hover .entImg {
+      display: flex;
+      transform: scale(1.05);
+    }
+
+    .bookmark {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #10141e;
+      background: rgba(6, 0, 27, 0.501);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 8px;
+      right: 8px;
+      z-index: 2;
+
+      .bookmarkImg {
+        width: 12px;
+        height: 14px;
+      }
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: baseline;
+      gap: 6px;
+      margin-top: 4px;
+
+      h6 {
+        font-size: 11px;
+        font-weight: 300;
+        color: white;
+      }
+
+      .dot {
+        width: 2px;
+        height: 2px;
+      }
+
+      .movie {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: 500;
+      align-self: baseline;
+      color: white;
+    }
   }
 `;

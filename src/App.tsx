@@ -14,6 +14,7 @@ import { RootState } from "./features/store";
 import { setIsLoggedIn } from "./features/isLoggedInSlice";
 import { setUserEmail } from "./features/userEmailSlice";
 import { Dispatch } from "@reduxjs/toolkit";
+import Bookmarked from "./components/Bookmarked";
 
 export const fetchEntertainment = async (
   isLoggedIn: boolean,
@@ -77,6 +78,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/signUp" element={<SignUp />} />
               <Route path="/logIn" element={<LogIn />} />
+              <Route path="/bookmarked" element={<Bookmarked />} />
             </Routes>
           </MainCont>
         </Main>
