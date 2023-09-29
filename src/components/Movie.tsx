@@ -10,7 +10,7 @@ import iconMovie from "../../public/images/icon-nav-movies.svg";
 import dot from "../../public/images/Pasted image.png";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 
-const Movie = (): JSX.Element => {
+const Movies = (): JSX.Element => {
   const dispatch = useDispatch();
 
   //კომპონენტად შეიძლება გატანა იმ დივის რომელიც იმაპება.
@@ -30,9 +30,8 @@ const Movie = (): JSX.Element => {
     (store: RootState) => store.userEmail.userEmail
   );
 
-  const tvSeries = entertainment.filter((item) => {
-    console.log(item.isBookmarked);
-    return item.category === "TV Series";
+  const movies = entertainment.filter((item) => {
+    return item.category === "Movie";
   });
 
   //bookmark entertainment
@@ -53,14 +52,14 @@ const Movie = (): JSX.Element => {
     }
   };
 
-  console.log(tvSeries);
+  console.log(movies);
 
   return (
     <TvSerieskWrapper>
-      <h4>Tv Series</h4>
+      <h4>Movies</h4>
       {isLoggedIn ? (
         <div className="mapCont">
-          {tvSeries.map((ent, index) => (
+          {movies.map((ent, index) => (
             <div key={index} className="container">
               <div className="imgCont">
                 <img
@@ -110,7 +109,7 @@ const Movie = (): JSX.Element => {
   );
 };
 
-export default Movie;
+export default Movies;
 
 const TvSerieskWrapper = styled.div`
   display: flex;
