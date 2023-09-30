@@ -9,7 +9,7 @@ import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 import axios from "axios";
 import dot from "../../public/images/Pasted image.png";
 import { fetchEntertainment } from "../App";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TvSeries = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -55,6 +55,16 @@ const TvSeries = (): JSX.Element => {
   };
 
   const [showMessage, setShowMessage] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (showMessage) {
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 4000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showMessage]);
 
   return (
     <TvSerieskWrapper>
@@ -281,5 +291,20 @@ const TvSerieskWrapper = styled.div`
       align-self: baseline;
       color: white;
     }
+  }
+
+  .messageContainer {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    top: 10px;
+    background-color: red;
+    padding: 0 8px;
+    justify-content: center;
+    color: white;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    transition: 0.5s;
   }
 `;
