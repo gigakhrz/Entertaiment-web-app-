@@ -55,7 +55,7 @@ const AllEntertainment = (): JSX.Element => {
     if (showMessage) {
       const timer = setTimeout(() => {
         setShowMessage(false);
-      }, 4000); // 4000 milliseconds = 4 seconds
+      }, 4000);
 
       return () => clearTimeout(timer);
     }

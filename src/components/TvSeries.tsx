@@ -32,7 +32,6 @@ const TvSeries = (): JSX.Element => {
   );
 
   const tvSeries = entertainment.filter((item) => {
-    console.log(item.isBookmarked);
     return item.category === "TV Series";
   });
 
@@ -49,12 +48,16 @@ const TvSeries = (): JSX.Element => {
 
         fetchEntertainment(isLoggedIn, userEmail, dispatch);
       } catch (error) {
-        setShowMessage(true);
+        console.log(error);
       }
+    } else {
+      setShowMessage(true);
     }
   };
 
   const [showMessage, setShowMessage] = useState<boolean>(false);
+
+  console.log(showMessage);
 
   useEffect(() => {
     if (showMessage) {
@@ -88,7 +91,10 @@ const TvSeries = (): JSX.Element => {
             </div>
             <div className="bookmark">
               <img
-                onClick={() => updateEntertainment(!ent.isBookmarked, ent._id)}
+                onClick={() => {
+                  console.log("roicode aq shevdivaar");
+                  updateEntertainment(!ent.isBookmarked, ent._id);
+                }}
                 src={ent.isBookmarked === false ? bookmark : fullbookmark}
                 className="bookmarkImg"
                 alt="empty bookmark image"
