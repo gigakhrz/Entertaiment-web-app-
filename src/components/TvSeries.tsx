@@ -97,6 +97,10 @@ const TvSeries = (): JSX.Element => {
             <p className="name">{ent.title}</p>
           </div>
         ))}
+
+        <div className="messageContainer">
+          <p>Please log in to bookmark</p>
+        </div>
       </div>
     </TvSerieskWrapper>
   );
