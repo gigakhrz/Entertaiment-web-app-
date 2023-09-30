@@ -9,6 +9,7 @@ import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 import axios from "axios";
 import dot from "../../public/images/Pasted image.png";
 import { fetchEntertainment } from "../App";
+import { useState } from "react";
 
 const TvSeries = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -48,10 +49,12 @@ const TvSeries = (): JSX.Element => {
 
         fetchEntertainment(isLoggedIn, userEmail, dispatch);
       } catch (error) {
-        console.log(error);
+        setShowMessage(true);
       }
     }
   };
+
+  const [showMessage, setShowMessage] = useState<boolean>(false);
 
   return (
     <TvSerieskWrapper>
@@ -98,7 +101,13 @@ const TvSeries = (): JSX.Element => {
           </div>
         ))}
 
-        <div className="messageContainer">
+        <div
+          className="messageContainer"
+          style={{
+            position: showMessage ? "absolute" : "fixed",
+            right: showMessage ? "10px" : "-100%",
+          }}
+        >
           <p>Please log in to bookmark</p>
         </div>
       </div>
