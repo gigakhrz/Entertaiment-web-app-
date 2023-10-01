@@ -33,8 +33,6 @@ const Header = (): JSX.Element => {
     setOpenFrame(!openFrame);
   };
 
-  console.log(path);
-
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
       <img src={logo} alt="Logo img" />
@@ -88,7 +86,7 @@ const Header = (): JSX.Element => {
               <button
                 onClick={() => {
                   setOpenFrame(!openFrame);
-                  navigate("/login");
+                  navigate("/logIn");
                 }}
               >
                 Login
