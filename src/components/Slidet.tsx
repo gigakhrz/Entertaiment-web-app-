@@ -89,6 +89,88 @@ const SliderCont = styled.div`
       display: flex;
       background-color: #10141e;
       gap: 12px;
+
+      .item {
+        width: 240px;
+        height: 140px;
+        border-radius: 8px;
+        position: relative;
+
+        .ImgTrend {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+        }
+
+        .trendingStructure {
+          position: absolute;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          padding: 8px 8px 16px 16px;
+          align-items: flex-end;
+          gap: 46px;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+
+          .bookmarkTrend {
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(6, 0, 27, 0.501);
+            z-index: 2;
+            cursor: pointer;
+          }
+
+          .TrendTitleDiv {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: flex-start;
+            .infoTrand {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              flex-direction: row;
+              gap: 6px;
+
+              h4 {
+                color: #fff;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+                opacity: 0.75;
+              }
+
+              .dot {
+                width: 3px;
+                height: 3px;
+              }
+
+              .movieSerielog {
+                width: 12px;
+                height: 12px;
+              }
+            }
+
+            h2 {
+              color: #fff;
+              font-size: 15px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+            }
+          }
+        }
+      }
     }
   }
 `;
