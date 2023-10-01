@@ -10,17 +10,38 @@ import iconMovie from "../../public/images/icon-nav-movies.svg";
 import dot from "../../public/images/Pasted image.png";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 
-const entertainment = useSelector(
-  (store: RootState) => store.entertainment.entertainment
-);
-const trendFilter = entertainment.filter((ent) => ent.isTrending === true);
-
 const Slider = (): JSX.Element => {
+  const entertainment = useSelector(
+    (store: RootState) => store.entertainment.entertainment
+  );
+  const trendFilter = entertainment.filter((ent) => ent.isTrending === true);
+
+  const [width, setWidth] = useState<any>(0);
+  const carousel = useRef<any>();
+
+  useEffect(() => {
+    const current = carousel.current;
+    console.log(carousel.current?.scrollWidth);
+    if (current) {
+      if (
+        typeof current.scrollWidth !== "undefined" &&
+        typeof current.offsetWidth !== "undefined"
+      ) {
+        setWidth(current.scrollWidth - current.offsetWidth);
+      }
+    }
+  }, []);
+
+  console.log(width);
   return (
     <SliderCont>
       <h2>Trending</h2>
       <motion.div className="carousel">
-        <motion.div className="innerCarusel">
+        <motion.div
+          className="innerCarusel"
+          drag="x"
+          dragConstraints={{ right: 0 }}
+        >
           {trendFilter.map((trend) => (
             <motion.div className="item" key={trend._id}>
               <img className="ImgTrend" src={trend.thumbnail.trending.small} />
@@ -95,6 +116,7 @@ const SliderCont = styled.div`
         height: 140px;
         border-radius: 8px;
         position: relative;
+        pointer-events: none;
 
         .ImgTrend {
           width: 100%;
@@ -170,6 +192,57 @@ const SliderCont = styled.div`
             }
           }
         }
+      }
+      .overlay {
+        display: none;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+
+        .playButton {
+          width: 80px;
+          height: 30px;
+          border-radius: 28.5px;
+          border: none;
+          outline: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 4px;
+          background: rgba(255, 255, 255, 0.25);
+
+          .playSvg {
+            width: 16px;
+            height: 16px;
+            z-index: 2;
+          }
+
+          h3 {
+            color: #fff;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+          }
+        }
+      }
+
+      .item:hover .overlay {
+        display: flex;
       }
     }
   }
