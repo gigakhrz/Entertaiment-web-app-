@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 import AllEntertainment from "./AllEntertainments";
-import Slider from "./Slidet";
+import Slider from "./Slider";
 
 const Home = (): JSX.Element => {
   return (
     <HomeWrapper>
-      {/* <Slider /> */}
+      <Slider />
       <AllEntertainment />
     </HomeWrapper>
   );
