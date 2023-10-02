@@ -5,7 +5,7 @@ import Slider from "./Slidet";
 const Home = (): JSX.Element => {
   return (
     <HomeWrapper>
-      <Slider />
+      {/* <Slider /> */}
       <AllEntertainment />
     </HomeWrapper>
   );
