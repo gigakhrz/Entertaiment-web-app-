@@ -123,4 +123,6 @@ const AllEntertainment = (): JSX.Element => {
 
 export default AllEntertainment;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  ${containetStyles}
+`;
