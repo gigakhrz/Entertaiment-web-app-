@@ -8,8 +8,10 @@ import dot from "../../public/images/Pasted image.png";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../features/store";
+import axios from "axios";
+import { fetchEntertainment } from "../App";
 
 const TrendingEnt = (): JSX.Element => {
   const [width, setWidth] = useState<number | undefined>(0);
@@ -19,6 +21,36 @@ const TrendingEnt = (): JSX.Element => {
   );
 
   const isTrendFilter = enjoyment.filter((enjoy) => enjoy.isTrending === true);
+
+  // Make sure that the user is logged in
+  const isLoggedIn = useSelector(
+    (store: RootState) => store.isLoggedIn.loggedIn
+  );
+
+  // catch userEmail to send put request for user's entertainments.
+  const userEmail = useSelector(
+    (store: RootState) => store.userEmail.userEmail
+  );
+
+  const dispatch = useDispatch();
+
+  //bookmark entertainment
+  const updateEntertainment = async (bookmarked: boolean, id: string) => {
+    if (isLoggedIn) {
+      try {
+        await axios.put(
+          `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
+          {
+            isBookmarked: bookmarked,
+          }
+        );
+
+        fetchEntertainment(isLoggedIn, userEmail, dispatch);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   useEffect(() => {
     const current = carousel.current;
@@ -63,6 +95,9 @@ const TrendingEnt = (): JSX.Element => {
                 <div className="trendingStructure">
                   <div className="bookmarkTrend">
                     <img
+                      onClick={() =>
+                        updateEntertainment(!trend.isBookmarked, trend._id)
+                      }
                       src={trend.isBookmarked ? fullbookmark : bookmark}
                       alt="bookmark svg"
                     />
@@ -121,16 +156,24 @@ const TrendingMain = styled.div`
       gap: 12px;
     }
 
+    .item:hover .ImgTrend {
+      display: flex;
+      transform: scale(1.05);
+    }
+
     .item {
       width: 240px;
       height: 140px;
       border-radius: 8px;
       position: relative;
+      cursor: pointer;
+      overflow: hidden;
 
       .ImgTrend {
         width: 100%;
         height: 100%;
         border-radius: 8px;
+        transition: transform 0.3s ease 0s;
       }
 
       .trendingStructure {

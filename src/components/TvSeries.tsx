@@ -93,7 +93,6 @@ const TvSeries = (): JSX.Element => {
             <div className="bookmark">
               <img
                 onClick={() => {
-                  console.log("roicode aq shevdivaar");
                   updateEntertainment(!ent.isBookmarked, ent._id);
                 }}
                 src={ent.isBookmarked === false ? bookmark : fullbookmark}
