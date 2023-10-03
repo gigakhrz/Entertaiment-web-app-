@@ -168,6 +168,10 @@ const TrendingMain = styled.div`
       position: relative;
       cursor: pointer;
       overflow: hidden;
+      @media screen and (min-width: 500px) {
+        width: 360px;
+        height: 210px;
+      }
 
       .ImgTrend {
         width: 100%;
