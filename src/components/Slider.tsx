@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../features/store";
 import axios from "axios";
 import { fetchEntertainment } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const TrendingEnt = (): JSX.Element => {
   const [width, setWidth] = useState<number | undefined>(0);
@@ -33,6 +34,7 @@ const TrendingEnt = (): JSX.Element => {
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //bookmark entertainment
   const updateEntertainment = async (bookmarked: boolean, id: string) => {
@@ -59,7 +61,8 @@ const TrendingEnt = (): JSX.Element => {
         typeof current.scrollWidth !== "undefined" &&
         typeof current.offsetWidth !== "undefined"
       ) {
-        setWidth(current.scrollWidth - current.offsetWidth);
+        setWidth(current.scrollWidth - window.innerWidth);
+        console.log(current.scrollWidth, window.innerWidth);
       }
     }
   }, []);
@@ -75,7 +78,7 @@ const TrendingEnt = (): JSX.Element => {
         >
           <motion.div
             drag="x"
-            dragConstraints={{ right: 0, left: -930 }}
+            dragConstraints={{ right: 0, left: -width }}
             className="innerCarousel"
           >
             {isTrendFilter.map((trend) => (
