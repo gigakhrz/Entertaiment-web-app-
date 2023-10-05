@@ -34,7 +34,6 @@ const TrendingEnt = (): JSX.Element => {
   );
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   //bookmark entertainment
   const updateEntertainment = async (bookmarked: boolean, id: string) => {
@@ -78,7 +77,7 @@ const TrendingEnt = (): JSX.Element => {
         >
           <motion.div
             drag="x"
-            dragConstraints={{ right: 0, left: -width }}
+            dragConstraints={{ right: 0, left: -1230 }}
             className="innerCarousel"
           >
             {isTrendFilter.map((trend) => (
