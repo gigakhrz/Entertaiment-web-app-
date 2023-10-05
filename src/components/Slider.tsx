@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../features/store";
 import axios from "axios";
 import { fetchEntertainment } from "../App";
-import { useNavigate } from "react-router-dom";
 
 const TrendingEnt = (): JSX.Element => {
   const [width, setWidth] = useState<number | undefined>(0);
