@@ -6,6 +6,7 @@ import allEntertainmentSlice, {
 import isLoggedInSlice, { IsLoggedIn } from "./isLoggedInSlice";
 import userEmailSlice, { UserInfo } from "./userEmailSlice";
 import inputValueSlice, { InputType } from "./inputValueSlice";
+import filteredEntSlice, { FilteredEnt } from "./filteredEntSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     isLoggedIn: isLoggedInSlice,
     userEmail: userEmailSlice,
     inputValue: inputValueSlice,
+    filteredEnt: filteredEntSlice,
   },
 });
 
@@ -21,6 +23,7 @@ export type RootState = {
   isLoggedIn: IsLoggedIn;
   userEmail: UserInfo;
   inputValue: InputType;
+  filteredEnt: FilteredEnt;
 };
 
 export default store;
