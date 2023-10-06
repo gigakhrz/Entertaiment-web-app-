@@ -12,10 +12,16 @@ import { fetchEntertainment } from "../App";
 import { useEffect, useState } from "react";
 import { containetStyles } from "../../sharedStyles";
 import { setEntertainment } from "../features/allEntertainmentSlice";
+import { setFilteredEnt } from "../features/filteredEntSlice";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
   const entertainment = useSelector((store: RootState) => store.entertainment);
+
+  //when user filter the entertainment result will save in this state
+  const filteredEnt = useSelector(
+    (store: RootState) => store.filteredEnt.filtered
+  );
 
   // catch userEmail to send put request for user's entertainments.
   const userEmail = useSelector(
@@ -69,12 +75,7 @@ const AllEntertainment = (): JSX.Element => {
       data = data.filter((item) =>
         item.title.toLowerCase().includes(inputValue.toLowerCase())
       );
-
-      if (inputValue.length > 0) {
-        dispatch(setEntertainment(data));
-      } else {
-        fetchEntertainment(isLoggedIn, userEmail, dispatch);
-      }
+      dispatch(setFilteredEnt(data));
     };
     filterEnt();
   }, [inputValue]);
@@ -83,7 +84,10 @@ const AllEntertainment = (): JSX.Element => {
     <Wrapper>
       <h4>Recomended for you</h4>
       <div className="mapCont">
-        {entertainment.entertainment.map((ent, index) => (
+        {(filteredEnt.length === 0
+          ? entertainment.entertainment
+          : filteredEnt
+        ).map((ent, index) => (
           <div key={index} className="container">
             <div className="imgCont">
               <img

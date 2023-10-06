@@ -1,9 +1,8 @@
 import { styled } from "styled-components";
 import search from "../../public/images/icon-search.svg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setValue } from "../features/inputValueSlice";
-import { RootState } from "../features/store";
 
 const Filter = (): JSX.Element => {
   useNavigate();
