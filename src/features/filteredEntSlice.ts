@@ -2,11 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import Entertainment from "../../type";
 
 export interface FilteredEnt {
-  filtered: Entertainment[];
+  filtered: Entertainment[] | undefined;
 }
 
 const initialState: FilteredEnt = {
-  filtered: [],
+  filtered: undefined,
 };
 
 const filteredEntSlice = createSlice({

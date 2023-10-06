@@ -83,7 +83,7 @@ const AllEntertainment = (): JSX.Element => {
     <Wrapper>
       <h4>Recomended for you</h4>
       <div className="mapCont">
-        {(filteredEnt.length === 0
+        {(filteredEnt === undefined
           ? entertainment.entertainment
           : filteredEnt
         ).map((ent, index) => (
