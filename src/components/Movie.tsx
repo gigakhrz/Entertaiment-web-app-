@@ -65,10 +65,12 @@ const Movies = (): JSX.Element => {
   useEffect(() => {
     const filterEnt = (): void => {
       let data = movies;
-      data = data.filter((item) =>
-        item.title.toLowerCase().includes(inputValue.toLowerCase())
-      );
-      dispatch(setFilteredEnt(data));
+      if (inputValue.length > 0) {
+        data = data.filter((item) =>
+          item.title.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        dispatch(setFilteredEnt(data));
+      }
     };
     filterEnt();
   }, [inputValue]);
