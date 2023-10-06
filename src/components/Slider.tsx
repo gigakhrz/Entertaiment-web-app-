@@ -55,12 +55,18 @@ const TrendingEnt = (): JSX.Element => {
   useEffect(() => {
     const current = carousel.current;
     if (current) {
-      if (
-        typeof current.scrollWidth !== "undefined" &&
-        typeof current.offsetWidth !== "undefined"
-      ) {
-        setWidth(current.scrollWidth - window.innerWidth);
-        console.log(current.scrollWidth, window.innerWidth);
+      if (typeof current.scrollWidth !== "undefined") {
+        const handleResize = () => {
+          setWidth(current.scrollWidth - window.innerWidth);
+        };
+
+        handleResize(); // Call it once to set the initial width
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
       }
     }
   }, []);
@@ -76,7 +82,7 @@ const TrendingEnt = (): JSX.Element => {
         >
           <motion.div
             drag="x"
-            dragConstraints={{ right: 0, left: -1230 }}
+            dragConstraints={{ right: 0, left: -width }}
             className="innerCarousel"
           >
             {isTrendFilter.map((trend) => (

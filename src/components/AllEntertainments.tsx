@@ -50,6 +50,10 @@ const AllEntertainment = (): JSX.Element => {
     }
   };
 
+  const filterEnt = (): void => {
+    let data = entertainment;
+  };
+
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
   useEffect(() => {
