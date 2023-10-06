@@ -15,8 +15,6 @@ const Filter = (): JSX.Element => {
     dispatch(setValue(e.target.value));
   };
 
-  const inputValue = useSelector((store: RootState) => store.inputValue.value);
-  console.log(inputValue);
   return (
     <FilterCont path={path}>
       <button>

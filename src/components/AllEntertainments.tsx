@@ -11,6 +11,7 @@ import axios from "axios";
 import { fetchEntertainment } from "../App";
 import { useEffect, useState } from "react";
 import { containetStyles } from "../../sharedStyles";
+import { setEntertainment } from "../features/allEntertainmentSlice";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -27,8 +28,6 @@ const AllEntertainment = (): JSX.Element => {
   );
 
   const dispatch = useDispatch();
-
-  console.log("https://dev-jobs-web-app-plum.vercel.app/");
 
   //bookmark entertainment
   const updateEntertainment = async (bookmarked: boolean, id: string) => {
@@ -50,9 +49,7 @@ const AllEntertainment = (): JSX.Element => {
     }
   };
 
-  const filterEnt = (): void => {
-    let data = entertainment;
-  };
+  const inputValue = useSelector((store: RootState) => store.inputValue.value);
 
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
@@ -66,7 +63,22 @@ const AllEntertainment = (): JSX.Element => {
     }
   }, [showMessage]);
 
-  console.log(entertainment);
+  useEffect(() => {
+    const filterEnt = (): void => {
+      let data = entertainment.entertainment;
+      data = data.filter((item) =>
+        item.title.toLowerCase().includes(inputValue.toLowerCase())
+      );
+
+      if (inputValue.length > 0) {
+        dispatch(setEntertainment(data));
+      } else {
+        fetchEntertainment(isLoggedIn, userEmail, dispatch);
+      }
+    };
+    filterEnt();
+  }, [inputValue]);
+
   return (
     <Wrapper>
       <h4>Recomended for you</h4>
@@ -127,6 +139,6 @@ const AllEntertainment = (): JSX.Element => {
 
 export default AllEntertainment;
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   ${containetStyles}
 `;
