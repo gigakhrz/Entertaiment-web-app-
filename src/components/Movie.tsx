@@ -10,6 +10,8 @@ import iconMovie from "../../public/images/icon-nav-movies.svg";
 import dot from "../../public/images/Pasted image.png";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 import { containetStyles } from "../../sharedStyles";
+import { useEffect } from "react";
+import { setFilteredEnt } from "../features/filteredEntSlice";
 const Movies = (): JSX.Element => {
   const dispatch = useDispatch();
 
@@ -18,6 +20,11 @@ const Movies = (): JSX.Element => {
   //all entertainment state
   const entertainment = useSelector(
     (store: RootState) => store.entertainment.entertainment
+  );
+
+  //when user filter the entertainment result will save in this state
+  const filteredEnt = useSelector(
+    (store: RootState) => store.filteredEnt.filtered
   );
 
   // Make sure that the user is logged in
@@ -52,6 +59,20 @@ const Movies = (): JSX.Element => {
     }
   };
 
+  //based on this value will filter entertainment
+  const inputValue = useSelector((store: RootState) => store.inputValue.value);
+
+  useEffect(() => {
+    const filterEnt = (): void => {
+      let data = movies;
+      data = data.filter((item) =>
+        item.title.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      dispatch(setFilteredEnt(data));
+    };
+    filterEnt();
+  }, [inputValue]);
+
   console.log(movies);
 
   return (
@@ -59,7 +80,7 @@ const Movies = (): JSX.Element => {
       <h4>Movies</h4>
 
       <div className="mapCont">
-        {movies.map((ent, index) => (
+        {(filteredEnt.length === 0 ? movies : filteredEnt).map((ent, index) => (
           <div key={index} className="container">
             <div className="imgCont">
               <img

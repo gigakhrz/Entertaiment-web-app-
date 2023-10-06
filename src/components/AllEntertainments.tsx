@@ -11,7 +11,6 @@ import axios from "axios";
 import { fetchEntertainment } from "../App";
 import { useEffect, useState } from "react";
 import { containetStyles } from "../../sharedStyles";
-import { setEntertainment } from "../features/allEntertainmentSlice";
 import { setFilteredEnt } from "../features/filteredEntSlice";
 
 const AllEntertainment = (): JSX.Element => {
