@@ -11,7 +11,10 @@ import dot from "../../public/images/Pasted image.png";
 import iconSeries from "../../public/images/icon-nav-tv-series.svg";
 import { containetStyles } from "../../sharedStyles";
 import { useEffect } from "react";
-import { setFilteredEnt } from "../features/filteredEntSlice";
+import {
+  setFilteredEnt,
+  setFilteredUndefined,
+} from "../features/filteredEntSlice";
 const Movies = (): JSX.Element => {
   const dispatch = useDispatch();
 
@@ -70,12 +73,10 @@ const Movies = (): JSX.Element => {
           item.title.toLowerCase().includes(inputValue.toLowerCase())
         );
         dispatch(setFilteredEnt(data));
-      }
+      } else dispatch(setFilteredUndefined());
     };
     filterEnt();
   }, [inputValue]);
-
-  console.log(movies);
 
   return (
     <TvSerieskWrapper>

@@ -11,7 +11,10 @@ import dot from "../../public/images/Pasted image.png";
 import { fetchEntertainment } from "../App";
 import { useEffect, useState } from "react";
 import { containetStyles } from "../../sharedStyles";
-import { setFilteredEnt } from "../features/filteredEntSlice";
+import {
+  setFilteredEnt,
+  setFilteredUndefined,
+} from "../features/filteredEntSlice";
 
 const TvSeries = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -75,6 +78,8 @@ const TvSeries = (): JSX.Element => {
           item.title.toLowerCase().includes(inputValue.toLowerCase())
         );
         dispatch(setFilteredEnt(data));
+      } else {
+        dispatch(setFilteredUndefined());
       }
     };
     filterEnt();

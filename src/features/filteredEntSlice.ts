@@ -16,8 +16,12 @@ const filteredEntSlice = createSlice({
     setFilteredEnt: (state, action: PayloadAction<Entertainment[]>) => {
       state.filtered = action.payload;
     },
+    setFilteredUndefined: (state) => {
+      state.filtered = undefined;
+    },
   },
 });
 
-export const { setFilteredEnt } = filteredEntSlice.actions;
+export const { setFilteredEnt, setFilteredUndefined } =
+  filteredEntSlice.actions;
 export default filteredEntSlice.reducer;

@@ -11,7 +11,10 @@ import axios from "axios";
 import { fetchEntertainment } from "../App";
 import { useEffect, useState } from "react";
 import { containetStyles } from "../../sharedStyles";
-import { setFilteredEnt } from "../features/filteredEntSlice";
+import {
+  setFilteredEnt,
+  setFilteredUndefined,
+} from "../features/filteredEntSlice";
 
 const AllEntertainment = (): JSX.Element => {
   //all entertainment state
@@ -76,12 +79,10 @@ const AllEntertainment = (): JSX.Element => {
           item.title.toLowerCase().includes(inputValue.toLowerCase())
         );
         dispatch(setFilteredEnt(data));
-      }
+      } else dispatch(setFilteredUndefined());
     };
     filterEnt();
   }, [inputValue]);
-
-  console.log(filteredEnt, "   mevar");
 
   return (
     <Wrapper>

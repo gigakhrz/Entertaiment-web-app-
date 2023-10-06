@@ -70,7 +70,7 @@ const Bookmarked = (): JSX.Element => {
           item.title.toLowerCase().includes(inputValue.toLowerCase())
         );
         dispatch(setFilteredEnt(data));
-      }
+      } else dispatch(setFilteredUndefined());
     };
     filterEnt();
   }, [inputValue]);
