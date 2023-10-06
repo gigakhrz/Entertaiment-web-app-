@@ -1,13 +1,22 @@
 import { styled } from "styled-components";
 import search from "../../public/images/icon-search.svg";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setValue } from "../features/inputValueSlice";
+import { RootState } from "../features/store";
 
 const Filter = (): JSX.Element => {
   useNavigate();
   const path = window.location.pathname;
 
-  console.log(path);
+  const dispatch = useDispatch();
 
+  const handleUpdateInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    dispatch(setValue(e.target.value));
+  };
+
+  const inputValue = useSelector((store: RootState) => store.inputValue.value);
+  console.log(inputValue);
   return (
     <FilterCont path={path}>
       <button>
@@ -15,6 +24,7 @@ const Filter = (): JSX.Element => {
       </button>
 
       <input
+        onChange={handleUpdateInput}
         type="text"
         placeholder={
           path === "/"
@@ -64,5 +74,6 @@ const FilterCont = styled.form<{ path: string }>`
     cursor: pointer;
     font-size: 16px;
     font-weight: 300;
+    color: white;
   }
 `;
