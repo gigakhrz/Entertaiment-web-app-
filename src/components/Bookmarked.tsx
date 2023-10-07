@@ -10,7 +10,10 @@ import axios from "axios";
 import dot from "../../public/images/Pasted image.png";
 import { fetchEntertainment } from "../App";
 import { useEffect } from "react";
-import { setFilteredEnt } from "../features/filteredEntSlice";
+import {
+  setFilteredEnt,
+  setFilteredUndefined,
+} from "../features/filteredEntSlice";
 
 const Bookmarked = (): JSX.Element => {
   const dispatch = useDispatch();
