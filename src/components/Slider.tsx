@@ -71,6 +71,8 @@ const TrendingEnt = (): JSX.Element => {
     }
   }, []);
 
+  console.log("ar mushaobs");
+
   return (
     <TrendingMain>
       <h2> Trending</h2>
