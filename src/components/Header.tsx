@@ -38,7 +38,7 @@ const Header = (): JSX.Element => {
   };
 
   console.log(path);
-  console.log(path === "/");
+  console.log(path === "/movies");
 
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
