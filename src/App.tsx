@@ -8,7 +8,7 @@ import axios from "axios";
 import EntertainmentItem from "../type";
 import { useDispatch, useSelector } from "react-redux";
 import { setEntertainment } from "./features/allEntertainmentSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Home from "./components/Home";
 import { RootState } from "./features/store";
 import { setIsLoggedIn } from "./features/isLoggedInSlice";
@@ -17,6 +17,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import Bookmarked from "./components/Bookmarked";
 import TvSeries from "./components/TvSeries";
 import Movies from "./components/Movie";
+import GridLoader from "react-spinners/GridLoader";
 
 export const fetchEntertainment = async (
   isLoggedIn: boolean,
@@ -67,6 +68,14 @@ function App() {
 
   useEffect(() => {
     fetchEntertainment(isLoggedIn, userEmail, dispatch);
+  }, [isLoggedIn]);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [isLoggedIn]);
 
   return (
