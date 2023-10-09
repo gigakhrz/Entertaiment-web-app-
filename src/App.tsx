@@ -81,20 +81,34 @@ function App() {
   return (
     <Router>
       <AppContainer>
-        <Header />
-        <Main>
-          <Filter />
-          <MainCont>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/signUp" element={<SignUp />} />
-              <Route path="/logIn" element={<LogIn />} />
-              <Route path="/bookmarked" element={<Bookmarked />} />
-              <Route path="/tv-series" element={<TvSeries />} />
-              <Route path="/movies" element={<Movies />} />
-            </Routes>
-          </MainCont>
-        </Main>
+        {loading ? (
+          <div className="loadingDiv">
+            <GridLoader
+              color={"#FC4747"}
+              loading={loading}
+              size={30}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ) : (
+          <>
+            <Header />
+            <Main>
+              <Filter />
+              <MainCont>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/signUp" element={<SignUp />} />
+                  <Route path="/logIn" element={<LogIn />} />
+                  <Route path="/bookmarked" element={<Bookmarked />} />
+                  <Route path="/tv-series" element={<TvSeries />} />
+                  <Route path="/movies" element={<Movies />} />
+                </Routes>
+              </MainCont>
+            </Main>
+          </>
+        )}
       </AppContainer>
     </Router>
   );
@@ -111,6 +125,18 @@ const AppContainer = styled.div`
   flex-direction: column;
   background-color: #10141e;
   gap: 26px;
+  position: relative;
+  .loadingDiv {
+    position: absolute;
+    left: 40%;
+    right: 50%;
+    bottom: 50%;
+    top: 50%;
+
+    @media (min-width: 1024px) {
+      left: 50%;
+    }
+  }
   @media screen and (min-width: 768px) {
     padding: 24px;
     gap: 34px;
