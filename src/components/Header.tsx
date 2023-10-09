@@ -219,7 +219,12 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       justify-content: center;
       align-items: center;
       border-radius: 10px;
+      z-index: 3;
       background-color: #161d2f;
+      @media screen and (min-width: 1024px) {
+        left: 80px;
+        top: -20px;
+      }
 
       button {
         width: 90px;
