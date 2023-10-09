@@ -42,7 +42,7 @@ const AllEntertainment = (): JSX.Element => {
     if (isLoggedIn) {
       try {
         await axios.put(
-          `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
+          `https://entertainment-back-end-production.up.railway.app/updateBookmarked/${userEmail}/${id}`,
           {
             isBookmarked: bookmarked,
           }

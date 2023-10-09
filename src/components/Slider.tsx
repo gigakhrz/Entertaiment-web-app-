@@ -40,7 +40,7 @@ const TrendingEnt = (): JSX.Element => {
         `Renewing entertainment with ID: ${id}, isBookmarked: ${newIsBookmarked}`
       );
       await axios.put(
-        `https://entertainment-web-app-api-production-ada6.up.railway.app/changeBookmark/${clientEmail}/${id}`,
+        `https://entertainment-back-end-production.up.railway.app/updateBookmarked/${clientEmail}/${id}`,
         {
           isBookmarked: newIsBookmarked,
         }

@@ -25,7 +25,7 @@ export const fetchEntertainment = async (
   dispatch: Dispatch
 ): Promise<void> => {
   if (isLoggedIn) {
-    const url = `http://localhost:3000/user?email=${userEmail}`;
+    const url = `https://entertainment-back-end-production.up.railway.app/user?email=${userEmail}`;
 
     try {
       const response = await axios.get(url);
@@ -34,7 +34,8 @@ export const fetchEntertainment = async (
       console.error("Error fetching user's data:", error);
     }
   } else {
-    const url = "http://localhost:3000/getEntertainment";
+    const url =
+      "https://entertainment-back-end-production.up.railway.app/getEntertainment";
 
     try {
       const response = await axios.get<EntertainmentItem[]>(url);
