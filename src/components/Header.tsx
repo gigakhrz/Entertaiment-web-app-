@@ -38,6 +38,7 @@ const Header = (): JSX.Element => {
   };
 
   console.log(path);
+  console.log(path === "/");
 
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
