@@ -184,7 +184,7 @@ const BookmarkWrapper = styled.div`
     @media screen and (min-width: 768px) {
       row-gap: 24px;
       column-gap: 30px;
-      max-width: 1024px;
+      max-width: 100%;
     }
     @media screen and (min-width: 1024px) {
       max-width: 1240px;

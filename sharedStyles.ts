@@ -46,9 +46,9 @@ export const containetStyles = css`
       column-gap: 30px;
       max-width: 1024px;
     }
-    @media screen and (min-width: 1024px) {
-      max-width: 1240px;
+    @media screen and (min-width: 1150px) {
       gap: 32px 40px;
+      max-width: 100%;
     }
   }
 

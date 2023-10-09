@@ -136,12 +136,29 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
   @media screen and (min-width: 768px) {
     padding: 21px 16px 19px 24px;
   }
+  @media screen and (min-width: 1024px) {
+    min-height: 960px;
+    min-width: 96px;
+    max-width: 96px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    padding: 35px 0 32px;
+    border-radius: 20px;
+  }
 
   .category {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 133.5px;
+    @media screen and (min-width: 1024px) {
+      flex-direction: column;
+      width: 20px;
+      height: 200px;
+      margin-top: 75px;
+      margin-bottom: 552px;
+    }
     a {
       text-decoration: none;
       width: 20;

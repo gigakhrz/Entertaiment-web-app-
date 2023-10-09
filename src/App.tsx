@@ -106,6 +106,9 @@ const AppContainer = styled.div`
     padding: 24px;
     gap: 34px;
   }
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
 `;
 
 // Main components container
@@ -114,7 +117,10 @@ const Main = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;
-  max-width: 1240px;
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 65px;
+  }
 `;
 
 //  i need this element to wrap the elements below the filter, because the filter should be above them on any screen size
