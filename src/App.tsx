@@ -102,6 +102,10 @@ const AppContainer = styled.div`
   flex-direction: column;
   background-color: #10141e;
   gap: 26px;
+  @media screen and (min-width: 768px) {
+    padding: 24px;
+    gap: 34px;
+  }
 `;
 
 // Main components container

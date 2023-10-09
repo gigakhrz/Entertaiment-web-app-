@@ -13,6 +13,11 @@ export const containetStyles = css`
   margin-top: 26px;
   width: 100%;
   padding: 0 16px;
+  @media screen and (min-width: 768px) {
+    padding: 0;
+    margin-top: 34px;
+    gap: 24px;
+  }
 
   h4 {
     font-size: 20px;
@@ -58,7 +63,7 @@ export const containetStyles = css`
       min-width: 220px;
       flex: 1;
       flex: auto;
-      max-width: 350px;
+      max-width: 302px;
     }
 
     .imgCont {

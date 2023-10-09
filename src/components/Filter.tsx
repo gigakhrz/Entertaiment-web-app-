@@ -53,6 +53,10 @@ const FilterCont = styled.form<{ path: string }>`
   gap: 16px;
   width: 100%;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    padding: 0;
+    gap: 24px;
+  }
 
   button {
     border: none;
@@ -72,5 +76,8 @@ const FilterCont = styled.form<{ path: string }>`
     font-size: 16px;
     font-weight: 300;
     color: white;
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+    }
   }
 `;
