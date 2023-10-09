@@ -35,7 +35,7 @@ const Header = (): JSX.Element => {
 
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
-      <img src={logo} alt="Logo img" />
+      <img src={logo} alt="Logo img" className="logoImg" />
 
       {/* Nav bar for categories which will redirect to another page based on the selected shape. */}
       <div className="category">
@@ -133,6 +133,9 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
   width: 100%;
   background-color: #161d2f;
   padding: 16px;
+  @media screen and (min-width: 768px) {
+    padding: 21px 16px 19px 24px;
+  }
 
   .category {
     display: flex;
@@ -168,6 +171,10 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       border: 1px solid var(--Pure-White, #fff);
       border-radius: 24px;
       cursor: pointer;
+      @media screen and (min-width: 768px) {
+        width: 32px;
+        height: 32px;
+      }
     }
 
     .logInLogOut {
