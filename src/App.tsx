@@ -128,7 +128,7 @@ const Main = styled.main`
 const MainCont = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   flex-direction: column;
   margin-bottom: 50px;
 `;
