@@ -37,6 +37,8 @@ const Header = (): JSX.Element => {
     setOpenFrame(!openFrame);
   };
 
+  console.log(path);
+
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
       <img
