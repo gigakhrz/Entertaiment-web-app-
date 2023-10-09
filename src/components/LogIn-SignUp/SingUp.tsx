@@ -242,6 +242,11 @@ const SingUpCont = styled.div<{ errorMessage: string }>`
         color: white;
         cursor: pointer;
       }
+
+      button:hover {
+        background: white;
+        color: #161d2f;
+      }
     }
 
     .textCont {
