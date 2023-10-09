@@ -12,6 +12,7 @@ export const containetStyles = css`
   align-items: center;
   margin-top: 26px;
   width: 100%;
+  padding: 0 16px;
 
   h4 {
     font-size: 20px;
@@ -34,9 +35,11 @@ export const containetStyles = css`
     row-gap: 15px;
     column-gap: 15px;
     justify-content: center;
+    max-width: 670px;
     @media screen and (min-width: 768px) {
       row-gap: 24px;
       column-gap: 30px;
+      max-width: 1024px;
     }
   }
 

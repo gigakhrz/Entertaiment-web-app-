@@ -20,5 +20,4 @@ const HomeWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 24px;
-  padding: 0 16px;
 `;
