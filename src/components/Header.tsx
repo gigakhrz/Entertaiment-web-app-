@@ -12,6 +12,10 @@ import { setUserEmail } from "../features/userEmailSlice";
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleGoToHomePage = (): void => {
+    window.location.href = "https://entertaiment-web-app-rosy.vercel.app/";
+  };
   //If the path is 'Login' or 'SignUp', the header must be hidden.
   const path = window.location.pathname;
 
@@ -35,7 +39,12 @@ const Header = (): JSX.Element => {
 
   return (
     <HeaderContainr path={path} openFrame={openFrame}>
-      <img src={logo} alt="Logo img" className="logoImg" />
+      <img
+        src={logo}
+        alt="Logo img"
+        className="logoImg"
+        onClick={handleGoToHomePage}
+      />
 
       {/* Nav bar for categories which will redirect to another page based on the selected shape. */}
       <div className="category">

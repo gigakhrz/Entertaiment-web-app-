@@ -17,8 +17,7 @@ const SignUp = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleGoToHomePage = (): void => {
-    // უნდა შეიცვალოს როცა გალაივდება საიტი
-    window.location.href = "http://localhost:5173/";
+    window.location.href = "https://entertaiment-web-app-rosy.vercel.app/";
   };
 
   const {
@@ -36,10 +35,13 @@ const SignUp = (): JSX.Element => {
     const password = data.password;
     const createUser = async (): Promise<void> => {
       try {
-        await axios.post("http://localhost:3000/signUp", {
-          email: email,
-          password: password,
-        });
+        await axios.post(
+          "https://entertainment-back-end-production.up.railway.app/signUp",
+          {
+            email: email,
+            password: password,
+          }
+        );
         navigate("/logIn");
       } catch (error) {
         const err = error as any;

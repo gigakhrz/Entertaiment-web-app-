@@ -19,8 +19,7 @@ const LogIn = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleGoToHomePage = (): void => {
-    // უნდა შეიცვალოს როცა გალაივდება საიტი, ამასთან ერთად ყველა აქსიოს რექვესთი
-    window.location.href = "http://localhost:5173/";
+    window.location.href = "https://entertaiment-web-app-rosy.vercel.app/";
   };
 
   const {
@@ -39,10 +38,13 @@ const LogIn = (): JSX.Element => {
     const password = data.password;
     const logIn = async () => {
       try {
-        await axios.post("http://localhost:3000/validate", {
-          email: email,
-          password: password,
-        });
+        await axios.post(
+          "https://entertainment-back-end-production.up.railway.app/validate",
+          {
+            email: email,
+            password: password,
+          }
+        );
 
         dispatch(setIsLoggedIn(true));
         dispatch(setUserEmail(email));
