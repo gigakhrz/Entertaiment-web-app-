@@ -156,6 +156,10 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
     border-radius: 20px;
   }
 
+  .logoImg {
+    cursor: pointer;
+  }
+
   .category {
     display: flex;
     justify-content: space-between;
