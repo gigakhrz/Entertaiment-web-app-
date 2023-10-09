@@ -288,6 +288,9 @@ const BookmarkWrapper = styled.div`
       display: flex;
       transform: scale(1.05);
     }
+    .bookmark:hover {
+      background: red;
+    }
 
     .bookmark {
       position: absolute;
