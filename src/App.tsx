@@ -114,6 +114,7 @@ const Main = styled.main`
   display: flex;
   align-items: center;
   flex-direction: column;
+  max-width: 1240px;
 `;
 
 //  i need this element to wrap the elements below the filter, because the filter should be above them on any screen size

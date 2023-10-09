@@ -46,6 +46,10 @@ export const containetStyles = css`
       column-gap: 30px;
       max-width: 1024px;
     }
+    @media screen and (min-width: 1024px) {
+      max-width: 1240px;
+      gap: 32px 40px;
+    }
   }
 
   .container {
@@ -66,6 +70,10 @@ export const containetStyles = css`
       max-width: 302px;
     }
 
+    @media screen and (min-width: 1024px) {
+      min-width: 280px;
+    }
+
     .imgCont {
       position: relative;
       width: 100%;
@@ -76,6 +84,9 @@ export const containetStyles = css`
       @media screen and (min-width: 768px) {
         height: 140px;
         flex: 1;
+      }
+      @media screen and (min-width: 1024px) {
+        min-height: 174px;
       }
 
       .entImg {
