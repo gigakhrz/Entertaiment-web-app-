@@ -58,6 +58,7 @@ export const containetStyles = css`
       min-width: 220px;
       flex: 1;
       flex: auto;
+      max-width: 350px;
     }
 
     .imgCont {
