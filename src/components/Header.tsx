@@ -224,6 +224,7 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       @media screen and (min-width: 1024px) {
         left: 80px;
         top: -20px;
+        height: 100px;
       }
 
       button {
