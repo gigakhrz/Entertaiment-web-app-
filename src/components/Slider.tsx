@@ -36,9 +36,6 @@ const TrendingEnt = (): JSX.Element => {
 
   const renewEnt = async (id: string, newIsBookmarked: boolean) => {
     try {
-      console.log(
-        `Renewing entertainment with ID: ${id}, isBookmarked: ${newIsBookmarked}`
-      );
       await axios.put(
         `https://entertainment-back-end-production.up.railway.app/updateBookmarked/${clientEmail}/${id}`,
         {

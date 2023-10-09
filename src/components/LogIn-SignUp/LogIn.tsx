@@ -60,7 +60,6 @@ const LogIn = (): JSX.Element => {
       } catch (error) {
         const err = error as any;
         if (err.response && err.response.status === 401) {
-          console.log("setted");
           setErrorMessage("Wrong password");
         } else if (err.response && err.response.status === 404) {
           setErrorMessage("Email cannot be found");
