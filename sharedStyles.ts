@@ -12,7 +12,6 @@ export const containetStyles = css`
   align-items: center;
   margin-top: 26px;
   width: 100%;
-  padding: 0 16px;
 
   h4 {
     font-size: 20px;
@@ -20,6 +19,10 @@ export const containetStyles = css`
     letter-spacing: -0.31px;
     color: white;
     align-self: baseline;
+    @media screen and (min-width: 768px) {
+      font-size: 32px;
+      letter-spacing: -0.5px;
+    }
   }
 
   .mapCont {
@@ -29,16 +32,18 @@ export const containetStyles = css`
     flex-wrap: wrap;
     align-items: center;
     row-gap: 15px;
-    column-gap: 4%;
-
-    @media screen and (min-width: 420px) {
-      column-gap: 3%;
+    column-gap: 15px;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+      row-gap: 24px;
+      column-gap: 30px;
     }
   }
 
   .container {
-    width: 48%;
+    width: 164px;
     display: flex;
+
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -46,13 +51,23 @@ export const containetStyles = css`
     position: relative;
     cursor: pointer;
 
+    @media screen and (min-width: 768px) {
+      min-width: 220px;
+      flex: 1;
+      flex: auto;
+    }
+
     .imgCont {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 110px;
       overflow: hidden;
       border-radius: 8px;
-      min-height: 114px;
+
+      @media screen and (min-width: 768px) {
+        height: 140px;
+        flex: 1;
+      }
 
       .entImg {
         width: 100%;
