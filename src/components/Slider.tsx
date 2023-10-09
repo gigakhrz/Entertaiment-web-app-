@@ -239,6 +239,11 @@ const TrendingMain = styled.div`
           padding: 16px 24px 24px 24px;
           gap: 106px;
         }
+        @media screen and (min-width: 1024px) {
+          .bookmarkTrend:hover {
+            background: rgb(252, 71, 71);
+          }
+        }
 
         .bookmarkTrend {
           width: 32px;

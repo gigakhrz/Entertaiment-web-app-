@@ -287,8 +287,10 @@ const BookmarkWrapper = styled.div`
       display: flex;
       transform: scale(1.05);
     }
-    .bookmark:hover {
-      background: red;
+    @media screen and (min-width: 1024px) {
+      .bookmark:hover {
+        background: red;
+      }
     }
 
     .bookmark {
