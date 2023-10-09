@@ -163,6 +163,12 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       text-decoration: none;
       width: 20;
       height: 16px;
+      @media screen and (min-width: 1024px) {
+        cursor: pointer;
+        :hover {
+          fill: red;
+        }
+      }
     }
 
     /* for active color */
