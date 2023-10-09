@@ -132,8 +132,9 @@ const Bookmarked = (): JSX.Element => {
           )}
         </div>
       ) : (
-        // აქ უნდა ჩაიწეროს ის შემთხვევა როდესაც იუზერი არ არის შესული სისტემაში
-        ""
+        <div>
+          <p className="notLoggedIn">Please log in to bookmark entertainment</p>
+        </div>
       )}
     </BookmarkWrapper>
   );
@@ -152,6 +153,11 @@ const BookmarkWrapper = styled.div`
   margin-top: 26px;
   width: 100%;
   padding: 0 16px;
+  @media screen and (min-width: 768px) {
+    padding: 0;
+    margin-top: 34px;
+    gap: 24px;
+  }
 
   h4 {
     font-size: 20px;
@@ -159,6 +165,10 @@ const BookmarkWrapper = styled.div`
     letter-spacing: -0.31px;
     color: white;
     align-self: baseline;
+    @media screen and (min-width: 768px) {
+      font-size: 32px;
+      letter-spacing: -0.5px;
+    }
   }
 
   .mapCont {
@@ -168,16 +178,20 @@ const BookmarkWrapper = styled.div`
     flex-wrap: wrap;
     align-items: center;
     row-gap: 15px;
-    column-gap: 4%;
-
-    @media screen and (min-width: 420px) {
-      column-gap: 3%;
+    column-gap: 15px;
+    justify-content: center;
+    max-width: 670px;
+    @media screen and (min-width: 768px) {
+      row-gap: 24px;
+      column-gap: 30px;
+      max-width: 1024px;
     }
   }
 
   .container {
-    width: 48%;
+    width: 164px;
     display: flex;
+
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -185,14 +199,24 @@ const BookmarkWrapper = styled.div`
     position: relative;
     cursor: pointer;
 
+    @media screen and (min-width: 768px) {
+      min-width: 220px;
+      flex: 1;
+      flex: auto;
+      max-width: 302px;
+    }
+
     .imgCont {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: 110px;
       overflow: hidden;
       border-radius: 8px;
-      min-height: 114px;
 
+      @media screen and (min-width: 768px) {
+        height: 140px;
+        flex: 1;
+      }
       .entImg {
         width: 100%;
         height: 100%;
@@ -281,16 +305,27 @@ const BookmarkWrapper = styled.div`
       align-self: baseline;
       gap: 6px;
       margin-top: 4px;
+      @media screen and (min-width: 768px) {
+        gap: 8px;
+        margin-top: 0;
+      }
 
       h6 {
         font-size: 11px;
         font-weight: 300;
         color: white;
+        @media screen and (min-width: 768px) {
+          font-size: 13px;
+        }
       }
 
       .dot {
         width: 2px;
         height: 2px;
+        @media screen and (min-width: 768px) {
+          width: 3px;
+          height: 3px;
+        }
       }
 
       .movie {
@@ -304,6 +339,18 @@ const BookmarkWrapper = styled.div`
       font-weight: 500;
       align-self: baseline;
       color: white;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .notLoggedIn {
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
     }
   }
 `;
