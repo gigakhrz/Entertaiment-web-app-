@@ -1,16 +1,18 @@
 import styled from "styled-components";
-import bookmark from "../../public/images/icon-bookmark-empty.svg";
-import fullbookmark from "../../public/images/icon-bookmark-full.svg";
-import playIcon from "../../public/images/icon-play.svg";
-import iconMovie from "../../public/images/icon-nav-movies.svg";
-import iconSeries from "../../public/images/icon-nav-tv-series.svg";
-import dot from "../../public/images/Pasted image.png";
+import fullBookTrend from "../../public/images/icon-bookmark-full.svg";
+import emptyBookTrend from "../../public/images/icon-bookmark-empty.svg";
+import dotSvg from "../../public/images/Pasted image.png";
+import playSvg from "../../public/images/icon-play.svg";
+import serieSvgTrend from "../../public/images/icon-nav-tv-series.svg";
+import movieSvgTrend from "../../public/images/icon-nav-movies.svg";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../features/store";
+
 import axios from "axios";
+
+import { RootState } from "../features/store";
 import { fetchEntertainment } from "../App";
 
 const TrendingEnt = (): JSX.Element => {
@@ -22,67 +24,61 @@ const TrendingEnt = (): JSX.Element => {
 
   const isTrendFilter = enjoyment.filter((enjoy) => enjoy.isTrending === true);
 
-  // Make sure that the user is logged in
-  const isLoggedIn = useSelector(
-    (store: RootState) => store.isLoggedIn.loggedIn
+  const leftConstraint = window.innerWidth >= 768 ? -1860 : -930;
+
+  const clientEmail = useSelector(
+    (user: RootState) => user.userEmail.userEmail
   );
 
-  // catch userEmail to send put request for user's entertainments.
-  const userEmail = useSelector(
-    (store: RootState) => store.userEmail.userEmail
-  );
+  const logIn = useSelector((user: RootState) => user.isLoggedIn.loggedIn);
 
   const dispatch = useDispatch();
 
-  //bookmark entertainment
-  const updateEntertainment = async (bookmarked: boolean, id: string) => {
-    if (isLoggedIn) {
-      try {
-        await axios.put(
-          `http://localhost:3000/updateBookmarked/${userEmail}/${id}`,
-          {
-            isBookmarked: bookmarked,
-          }
-        );
-
-        fetchEntertainment(isLoggedIn, userEmail, dispatch);
-      } catch (error) {
-        console.log(error);
-      }
+  const renewEnt = async (id: string, newIsBookmarked: boolean) => {
+    try {
+      console.log(
+        `Renewing entertainment with ID: ${id}, isBookmarked: ${newIsBookmarked}`
+      );
+      await axios.put(
+        `https://entertainment-web-app-api-production-ada6.up.railway.app/changeBookmark/${clientEmail}/${id}`,
+        {
+          isBookmarked: newIsBookmarked,
+        }
+      );
+      console.log("Bookmark updated successfully");
+      fetchEntertainment(logIn, clientEmail, dispatch);
+    } catch (error) {
+      console.log("Error updating bookmark:", error);
     }
   };
 
   useEffect(() => {
     const current = carousel.current;
     if (current) {
-      if (typeof current.scrollWidth !== "undefined") {
-        const handleResize = () => {
-          setWidth(current.scrollWidth - window.innerWidth);
-        };
-
-        handleResize(); // Call it once to set the initial width
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-          window.removeEventListener("resize", handleResize);
-        };
+      if (
+        typeof current.scrollWidth !== "undefined" &&
+        typeof current.offsetWidth !== "undefined"
+      ) {
+        setWidth(current.scrollWidth - current.offsetWidth);
       }
     }
   }, []);
 
   return (
     <TrendingMain>
-      <h2> Trending</h2>
+      <h2 className="trendingTitle"> Trending</h2>
       {width !== undefined && (
         <motion.div
           ref={carousel}
           className="carousel"
-          whileDrag={{ cursor: "grabbing" }}
+          whileTap={{ cursor: "grabbing" }}
         >
           <motion.div
             drag="x"
-            dragConstraints={{ right: 0, left: -width }}
+            dragConstraints={{
+              right: 0,
+              left: leftConstraint,
+            }}
             className="innerCarousel"
           >
             {isTrendFilter.map((trend) => (
@@ -91,10 +87,14 @@ const TrendingEnt = (): JSX.Element => {
                   className="ImgTrend"
                   src={trend.thumbnail.trending.small}
                 />
+                <img
+                  className="ImgTrendTab"
+                  src={trend.thumbnail.trending.large}
+                />
 
                 <div className="overlay">
                   <button className="playButton">
-                    <img className="playSvg" src={playIcon} alt="play svg" />
+                    <img className="playSvg" src={playSvg} alt="play svg" />
                     <h3>Play </h3>
                   </button>
                 </div>
@@ -102,25 +102,30 @@ const TrendingEnt = (): JSX.Element => {
                 <div className="trendingStructure">
                   <div className="bookmarkTrend">
                     <img
-                      onClick={() =>
-                        updateEntertainment(!trend.isBookmarked, trend._id)
-                      }
-                      src={trend.isBookmarked ? fullbookmark : bookmark}
+                      onClick={async (e) => {
+                        e.preventDefault();
+
+                        const newIsBookmarked = !trend.isBookmarked;
+                        await renewEnt(trend._id, newIsBookmarked);
+                      }}
+                      src={trend.isBookmarked ? fullBookTrend : emptyBookTrend}
                       alt="bookmark svg"
                     />
                   </div>
                   <div className="TrendTitleDiv">
                     <div className="infoTrand">
                       <h4> year</h4>
-                      <img src={dot} className="dot" />
+                      <img src={dotSvg} className="dot" />
                       <img
                         src={
-                          trend.category === "Movie" ? iconMovie : iconSeries
+                          trend.category === "Movie"
+                            ? movieSvgTrend
+                            : serieSvgTrend
                         }
                         className="movieSerielog"
                       />
                       <h4> {trend.category}</h4>
-                      <img src={dot} className="dot" />
+                      <img src={dotSvg} className="dot" />
                       <h4> {trend.rating}</h4>
                     </div>
                     <h2> {trend.title}</h2>
@@ -137,30 +142,43 @@ const TrendingEnt = (): JSX.Element => {
 
 const TrendingMain = styled.div`
   width: 100%;
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: flex-start;
   overflow: hidden;
+  @media (min-width: 768px) {
+    gap: 25px;
+  }
 
-  h2 {
+  .trendingTitle {
     color: #fff;
     font-size: 20px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
     letter-spacing: -0.312px;
+    @media (min-width: 768px) {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: -0.5px;
+    }
   }
 
   .carousel {
     cursor: grab;
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: #10141e;
 
     .innerCarousel {
       display: flex;
       background-color: #10141e;
       gap: 12px;
+      @media (min-width: 768px) {
+        gap: 40px;
+      }
     }
 
     .item:hover .ImgTrend {
@@ -173,18 +191,34 @@ const TrendingMain = styled.div`
       height: 140px;
       border-radius: 8px;
       position: relative;
-      cursor: pointer;
       overflow: hidden;
-      @media screen and (min-width: 500px) {
-        width: 360px;
-        height: 210px;
+      @media (min-width: 768px) {
+        width: 470px;
+        height: 230px;
+      }
+      @media (min-width: 1024px) {
+        width: 470px;
+        height: 230px;
       }
 
       .ImgTrend {
         width: 100%;
         height: 100%;
         border-radius: 8px;
-        transition: transform 0.3s ease 0s;
+
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      .ImgTrendTab {
+        display: none;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        @media (min-width: 768px) {
+          display: flex;
+        }
       }
 
       .trendingStructure {
@@ -199,6 +233,11 @@ const TrendingMain = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
+
+        @media (min-width: 768px) {
+          padding: 16px 24px 24px 24px;
+          gap: 106px;
+        }
 
         .bookmarkTrend {
           width: 32px;
@@ -225,6 +264,9 @@ const TrendingMain = styled.div`
             justify-content: flex-start;
             flex-direction: row;
             gap: 6px;
+            @media (min-width: 768px) {
+              gap: 8px;
+            }
 
             h4 {
               color: #fff;
@@ -233,6 +275,12 @@ const TrendingMain = styled.div`
               font-weight: 300;
               line-height: normal;
               opacity: 0.75;
+              @media (min-width: 768px) {
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
+              }
             }
 
             .dot {
@@ -252,6 +300,12 @@ const TrendingMain = styled.div`
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            @media (min-width: 768px) {
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+            }
           }
         }
       }
@@ -288,11 +342,20 @@ const TrendingMain = styled.div`
         align-items: center;
         gap: 4px;
         background: rgba(255, 255, 255, 0.25);
+        @media (min-width: 768px) {
+          width: 120px;
+          height: 50px;
+          gap: 8px;
+        }
 
         .playSvg {
           width: 16px;
           height: 16px;
           z-index: 2;
+          @media (min-width: 768px) {
+            width: 24px;
+            height: 24px;
+          }
         }
 
         h3 {
@@ -301,6 +364,9 @@ const TrendingMain = styled.div`
           font-style: normal;
           font-weight: 500;
           line-height: normal;
+          @media (min-width: 768px) {
+            font-size: 16px;
+          }
         }
       }
     }

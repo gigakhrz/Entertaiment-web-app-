@@ -67,7 +67,7 @@ export const containetStyles = css`
       min-width: 220px;
       flex: 1;
       flex: auto;
-      max-width: 302px;
+      max-width: 280px;
     }
 
     @media screen and (min-width: 1024px) {
