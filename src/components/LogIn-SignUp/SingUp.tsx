@@ -138,6 +138,10 @@ const SingUpCont = styled.div<{ errorMessage: string }>`
     border-radius: 10px;
     background: var(--Semi-Dark-Blue, #161d2f);
     padding: 24px;
+    @media screen and (min-width: 768px) {
+      width: 400px;
+      padding: 32px;
+    }
 
     h1 {
       font-size: 32px;

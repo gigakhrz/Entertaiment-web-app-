@@ -143,6 +143,10 @@ const LogInCont = styled.div<{ err: string }>`
     border-radius: 10px;
     background: var(--Semi-Dark-Blue, #161d2f);
     padding: 24px;
+    @media screen and (min-width: 768px) {
+      width: 400px;
+      padding: 32px;
+    }
 
     h1 {
       font-size: 32px;
@@ -158,6 +162,7 @@ const LogInCont = styled.div<{ err: string }>`
       align-items: center;
       flex-direction: column;
       gap: 24px;
+      font-size: 15px;
 
       label {
         width: 100%;
