@@ -192,13 +192,13 @@ const HeaderContainr = styled.header<{ path: string; openFrame: boolean }>`
       fill: ${(props) => (props.path === "/" ? "white" : "")};
     }
     .movies svg path {
-      fill: ${(props) => (props.path === "/movies" ? "white" : "")};
+      fill: ${(props) => (props.path.includes("/movies") ? "white" : "")};
     }
     .series svg path {
-      fill: ${(props) => (props.path === "/tv-series" ? "white" : "")};
+      fill: ${(props) => (props.path.includes("/tv-series") ? "white" : "")};
     }
     .bookmarked svg path {
-      fill: ${(props) => (props.path === "/bookmarked" ? "white" : "")};
+      fill: ${(props) => (props.path.includes("/bookmarked") ? "white" : "")};
     }
   }
 
