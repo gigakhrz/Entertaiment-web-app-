@@ -71,8 +71,6 @@ const TrendingEnt = (): JSX.Element => {
     }
   }, []);
 
-  console.log("ar mushaobs");
-
   return (
     <TrendingMain>
       <h2> Trending</h2>
@@ -139,7 +137,7 @@ const TrendingEnt = (): JSX.Element => {
 
 const TrendingMain = styled.div`
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 16px;
   align-items: flex-start;
