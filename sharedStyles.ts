@@ -166,16 +166,27 @@ export const containetStyles = css`
       align-self: baseline;
       gap: 6px;
       margin-top: 4px;
+      @media screen and (min-width: 768px) {
+        gap: 8px;
+        margin-top: 0;
+      }
 
       h6 {
         font-size: 11px;
         font-weight: 300;
         color: white;
+        @media screen and (min-width: 768px) {
+          font-size: 13px;
+        }
       }
 
       .dot {
         width: 2px;
         height: 2px;
+        @media screen and (min-width: 768px) {
+          width: 3px;
+          height: 3px;
+        }
       }
 
       .movie {
@@ -189,6 +200,9 @@ export const containetStyles = css`
       font-weight: 500;
       align-self: baseline;
       color: white;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
     }
   }
 
