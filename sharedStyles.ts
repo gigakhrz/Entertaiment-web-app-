@@ -124,11 +124,21 @@ export const containetStyles = css`
           outline: none;
           gap: 5px;
           background: rgba(255, 255, 255, 0.25);
+          cursor: pointer;
+          @media screen and (min-width: 768px) {
+            width: 117px;
+            height: 48px;
+            gap: 19px;
+          }
 
           .playIcon {
             width: 15px;
             height: 15px;
             z-index: 2;
+            @media screen and (min-width: 768px) {
+              width: 30px;
+              height: 30px;
+            }
           }
 
           p {
@@ -136,6 +146,9 @@ export const containetStyles = css`
             font-weight: 500;
             color: white;
             z-index: 2;
+            @media screen and (min-width: 768px) {
+              font-size: 18px;
+            }
           }
         }
       }

@@ -100,7 +100,12 @@ const AllEntertainment = (): JSX.Element => {
                 alt="image"
               />
               <div className="overlay">
-                <button className="playWrapper">
+                <button
+                  className="playWrapper"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
+                >
                   <img className="playIcon" src={playIcon} alt="play icon " />
                   <p>Play</p>
                 </button>
