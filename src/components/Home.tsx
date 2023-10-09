@@ -21,7 +21,6 @@ const HomeWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   @media (min-width: 768px) {
-    padding: 0 25px;
     padding-bottom: 56px;
   }
   @media (min-width: 1024px) {

@@ -147,8 +147,12 @@ const TrendingMain = styled.div`
   gap: 16px;
   align-items: flex-start;
   overflow: hidden;
+  padding: 0 16px;
+  margin-top: 26px;
   @media (min-width: 768px) {
     gap: 25px;
+    margin-top: 34px;
+    padding: 0;
   }
 
   .trendingTitle {
@@ -205,10 +209,7 @@ const TrendingMain = styled.div`
         width: 100%;
         height: 100%;
         border-radius: 8px;
-
-        @media (min-width: 768px) {
-          display: none;
-        }
+        transition: transform 0.3s ease 0s;
       }
 
       .ImgTrendTab {
@@ -341,6 +342,7 @@ const TrendingMain = styled.div`
         justify-content: center;
         align-items: center;
         gap: 4px;
+        cursor: pointer;
         background: rgba(255, 255, 255, 0.25);
         @media (min-width: 768px) {
           width: 120px;
