@@ -108,6 +108,7 @@ const AppContainer = styled.div`
   }
   @media screen and (min-width: 1024px) {
     flex-direction: row;
+    align-items: baseline;
   }
 `;
 

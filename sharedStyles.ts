@@ -39,7 +39,7 @@ export const containetStyles = css`
     align-items: center;
     row-gap: 15px;
     column-gap: 15px;
-    justify-content: center;
+    justify-content: baseline;
     max-width: 670px;
     @media screen and (min-width: 768px) {
       row-gap: 24px;
