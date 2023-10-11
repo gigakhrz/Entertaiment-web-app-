@@ -57,7 +57,7 @@ const Bookmarked = (): JSX.Element => {
 
         fetchEntertainment(isLoggedIn, userEmail, dispatch);
       } catch (error) {
-        console.log(error);
+        console.log(error + "can't update data");
       }
     }
   };
