@@ -18,8 +18,6 @@ import {
 const Bookmarked = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  //კომპონენტად შეიძლება გატანა იმ დივის რომელიც იმაპება.
-
   //all entertainment state
   const entertainment = useSelector(
     (store: RootState) => store.entertainment.entertainment
