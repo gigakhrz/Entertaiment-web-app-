@@ -106,6 +106,7 @@ const Header = (): JSX.Element => {
               </button>
               <button
                 onClick={() => {
+                  // navigate after 0.5sec
                   setOpenFrame(!openFrame);
                   setTimeout(() => {
                     navigate("/signUp");
