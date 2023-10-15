@@ -13,6 +13,7 @@ const Header = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Using this function will return the page to the home page
   const handleGoToHomePage = (): void => {
     window.location.href = "https://entertaiment-web-app-rosy.vercel.app/";
   };
